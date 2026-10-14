@@ -1,5 +1,6 @@
 // ========================================
 // ELEMENTOS, ESTADO Y NAVEGACIÓN
+// El progreso vive solo durante esta sesión.
 // ========================================
 
 const views = {
@@ -19,15 +20,16 @@ const alertCount = document.querySelector('#alertcount');
 
 let activeApp = 'ARCHIVOS';
 let activeItem = null;
+const session = window.sessionStorage;
 
-const getProgress = () => JSON.parse(localStorage.getItem('pda-progress')) || {
+const getProgress = () => JSON.parse(session.getItem('pda-progress')) || {
     unlocked: false,
     openedItems: [],
     alertsRead: false
 };
 
 const saveProgress = (progress) => {
-    localStorage.setItem('pda-progress', JSON.stringify(progress));
+    session.setItem('pda-progress', JSON.stringify(progress));
 };
 
 const show = (viewName) => {
@@ -64,7 +66,7 @@ let deadline = null;
 let timerInterval = null;
 
 const getDeadline = () => {
-    const savedDeadline = Number(localStorage.getItem(TIMER_STORAGE_KEY));
+    const savedDeadline = Number(session.getItem(TIMER_STORAGE_KEY));
 
     if (savedDeadline) {
         return savedDeadline;
@@ -72,7 +74,7 @@ const getDeadline = () => {
 
     const newDeadline = Date.now() + TIMER_DURATION;
 
-    localStorage.setItem(TIMER_STORAGE_KEY, String(newDeadline));
+    session.setItem(TIMER_STORAGE_KEY, String(newDeadline));
     return newDeadline;
 };
 
