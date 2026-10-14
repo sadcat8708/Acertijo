@@ -18,6 +18,7 @@ const appText = document.querySelector('#apptext');
 const content = document.querySelector('#content');
 const alertCount = document.querySelector('#alertcount');
 const fullscreenButton = document.querySelector('#fullscreen');
+const corruption = document.querySelector('#corruption');
 
 let activeApp = 'ARCHIVOS';
 let activeItem = null;
@@ -72,9 +73,9 @@ setInterval(updateClock, 30000);
 // narrativo final en minutos.
 // ========================================
 
-const TIMER_DURATION = 24 * 60 * 1000;
+const TIMER_DURATION = 1 * 60 * 1000;
 const timer = document.querySelector('#timer');
-const TIMER_STORAGE_KEY = 'pda-deadline-after-unlock';
+const TIMER_STORAGE_KEY = 'pda-deadline-test-1min';
 let deadline = null;
 let timerInterval = null;
 
@@ -93,16 +94,32 @@ const getDeadline = () => {
 
 const updateTimer = () => {
     if (!deadline) {
-        timer.textContent = 'T-00:24:00';
+        timer.textContent = 'T-00:01:00';
         return;
     }
 
     const remaining = Math.max(0, deadline - Date.now());
+
+    if (remaining === 0) {
+        triggerCorruption();
+        return;
+    }
+
     const hours = Math.floor(remaining / 3600000);
     const minutes = Math.floor((remaining % 3600000) / 60000);
     const seconds = Math.floor((remaining % 60000) / 1000);
 
     timer.textContent = `T-${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+};
+
+const triggerCorruption = () => {
+    if (!corruption.hidden) return;
+
+    clearInterval(timerInterval);
+    timerInterval = null;
+    timer.textContent = 'T-00:00:00';
+    session.clear();
+    corruption.hidden = false;
 };
 
 const startTimer = () => {
@@ -265,6 +282,30 @@ document.addEventListener('fullscreenchange', updateFullscreenButton);
 const initialProgress = getProgress();
 alertCount.textContent = initialProgress.alertsRead ? '0' : '1';
 
-if (initialProgress.unlocked) show('home');
+if (initialProgress.unlocked) {
+    show('home');
+    startTimer();
+}
 
-if (initialProgress.unlocked) startTimer();
+// ========================================
+// REINICIO AL CERRAR O RESTAURAR LA PÁGINA
+// ========================================
+
+window.addEventListener('pagehide', () => {
+    session.clear();
+});
+
+window.addEventListener('pageshow', (event) => {
+    if (!event.persisted) return;
+
+    session.clear();
+    clearInterval(timerInterval);
+    timerInterval = null;
+    deadline = null;
+    corruption.hidden = true;
+    updateTimer();
+    show('lock');
+    password.value = '';
+    message.textContent = 'PISTA DE DEMOSTRACIÓN: el nombre del propietario es la clave.';
+    message.className = '';
+});

@@ -543,6 +543,114 @@ h2 {
 }
 
 /* ========================================
+   SECUENCIA DE CORRUPCIÓN AL AGOTAR EL TIEMPO
+   ======================================== */
+
+.corruption {
+    align-items: center;
+    background: #170705;
+    color: #ff765c;
+    display: flex;
+    flex-direction: column;
+    inset: 0;
+    justify-content: center;
+    overflow: hidden;
+    padding: 30px;
+    position: absolute;
+    text-align: center;
+    z-index: 4;
+}
+
+.corruption[hidden] {
+    display: none;
+}
+
+.corruption::before,
+.corruption::after {
+    background: #ff765c;
+    content: '';
+    height: 2px;
+    left: -10%;
+    opacity: .7;
+    position: absolute;
+    width: 120%;
+}
+
+.corruption::before {
+    animation: interference 1.3s infinite steps(2);
+    top: 23%;
+}
+
+.corruption::after {
+    animation: interference 1.8s infinite reverse steps(2);
+    bottom: 27%;
+}
+
+.corruption-code,
+.corruption > span {
+    font-size: 8px;
+    letter-spacing: .12em;
+}
+
+.corruption-symbol {
+    animation: glitch 1s infinite steps(2);
+    font-size: 60px;
+    letter-spacing: 8px;
+    margin: 22px 0;
+}
+
+.corruption h2 {
+    color: #ffd1c9;
+    font-size: 38px;
+}
+
+.corruption h2 b {
+    color: #ff765c;
+    font-weight: 400;
+}
+
+.corruption > p:not(.corruption-code) {
+    font-size: 10px;
+    line-height: 1.7;
+}
+
+.corruption-message {
+    border-bottom: 1px solid #ff765c70;
+    border-top: 1px solid #ff765c70;
+    color: #ffb0a2;
+    margin: 18px 0;
+    padding: 12px;
+}
+
+@keyframes interference {
+    0%,
+    100% {
+        transform: translateX(-5%);
+    }
+
+    50% {
+        transform: translateX(7%);
+    }
+}
+
+@keyframes glitch {
+    0%,
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    25% {
+        opacity: .35;
+        transform: translateX(-9px);
+    }
+
+    60% {
+        transform: translateX(8px);
+    }
+}
+
+/* ========================================
    DISEÑO RESPONSIVO Y CONTROLES TÁCTILES
    ======================================== */
 
