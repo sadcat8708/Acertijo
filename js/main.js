@@ -59,7 +59,9 @@ setInterval(updateClock, 30000);
 
 const TIMER_DURATION = 24 * 60 * 1000;
 const timer = document.querySelector('#timer');
-const TIMER_STORAGE_KEY = 'pda-deadline-24min';
+const TIMER_STORAGE_KEY = 'pda-deadline-after-unlock';
+let deadline = null;
+let timerInterval = null;
 
 const getDeadline = () => {
     const savedDeadline = Number(localStorage.getItem(TIMER_STORAGE_KEY));
@@ -74,9 +76,12 @@ const getDeadline = () => {
     return newDeadline;
 };
 
-const deadline = getDeadline();
-
 const updateTimer = () => {
+    if (!deadline) {
+        timer.textContent = 'T-00:24:00';
+        return;
+    }
+
     const remaining = Math.max(0, deadline - Date.now());
     const hours = Math.floor(remaining / 3600000);
     const minutes = Math.floor((remaining % 3600000) / 60000);
@@ -85,8 +90,16 @@ const updateTimer = () => {
     timer.textContent = `T-${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 };
 
+const startTimer = () => {
+    deadline = getDeadline();
+    updateTimer();
+
+    if (!timerInterval) {
+        timerInterval = setInterval(updateTimer, 1000);
+    }
+};
+
 updateTimer();
-setInterval(updateTimer, 1000);
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -101,6 +114,7 @@ form.addEventListener('submit', (event) => {
     message.textContent = '✓ ACCESO CONCEDIDO · CARGANDO ESCRITORIO';
     message.className = '';
     saveProgress({ ...getProgress(), unlocked: true });
+    startTimer();
     setTimeout(() => show('home'), 450);
 });
 
@@ -212,3 +226,5 @@ const initialProgress = getProgress();
 alertCount.textContent = initialProgress.alertsRead ? '0' : '1';
 
 if (initialProgress.unlocked) show('home');
+
+if (initialProgress.unlocked) startTimer();
