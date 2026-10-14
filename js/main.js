@@ -17,6 +17,7 @@ const appLabel = document.querySelector('#app-label');
 const appText = document.querySelector('#apptext');
 const content = document.querySelector('#content');
 const alertCount = document.querySelector('#alertcount');
+const fullscreenButton = document.querySelector('#fullscreen');
 
 let activeApp = 'ARCHIVOS';
 let activeItem = null;
@@ -36,6 +37,18 @@ const show = (viewName) => {
     Object.entries(views).forEach(([name, view]) => {
         view.hidden = name !== viewName;
     });
+};
+
+const goHome = () => {
+    if (getProgress().unlocked) {
+        show('home');
+        return;
+    }
+
+    message.textContent = '⚠ ACCESO REQUERIDO · DESBLOQUEE LA PDA PARA CONTINUAR';
+    message.className = 'error';
+    show('lock');
+    password.focus();
 };
 
 // ========================================
@@ -216,13 +229,38 @@ document.querySelector('#back').addEventListener('click', () => {
         return;
     }
 
-    show('home');
+    goHome();
 });
 
-document.querySelector('#homebutton').addEventListener('click', () => show('home'));
+document.querySelector('#homebutton').addEventListener('click', goHome);
 document.querySelector('#enter').addEventListener('click', () => {
     if (!views.lock.hidden) form.requestSubmit();
 });
+
+// ========================================
+// PANTALLA COMPLETA
+// ========================================
+
+const updateFullscreenButton = () => {
+    const active = Boolean(document.fullscreenElement);
+
+    fullscreenButton.textContent = active ? '×' : '⛶';
+    fullscreenButton.title = active ? 'Salir de pantalla completa' : 'Pantalla completa';
+    fullscreenButton.setAttribute('aria-label', fullscreenButton.title);
+};
+
+fullscreenButton.addEventListener('click', async () => {
+    if (!document.fullscreenEnabled) return;
+
+    if (document.fullscreenElement) {
+        await document.exitFullscreen();
+        return;
+    }
+
+    await document.documentElement.requestFullscreen();
+});
+
+document.addEventListener('fullscreenchange', updateFullscreenButton);
 
 const initialProgress = getProgress();
 alertCount.textContent = initialProgress.alertsRead ? '0' : '1';

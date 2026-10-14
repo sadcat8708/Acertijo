@@ -90,6 +90,23 @@ header {
 .timer {
     color: var(--o);
 }
+
+.fullscreen-button {
+    background: transparent;
+    border: 0;
+    color: var(--g);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 15px;
+    line-height: 1;
+    padding: 4px;
+}
+
+.fullscreen-button:hover,
+.fullscreen-button:focus-visible {
+    color: var(--o);
+    outline: 1px solid var(--o);
+}
 .view {
     min-height:518px;
     padding:42px 48px 23px;
@@ -684,5 +701,18 @@ h2 {
 
     .record-body small {
         font-size: 7px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        gap: 4px;
+        padding-left: 7px;
+        padding-right: 7px;
+    }
+
+    .fullscreen-button {
+        font-size: 12px;
+        padding: 2px;
     }
 }
