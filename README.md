@@ -2,63 +2,68 @@
 
 > Escape Room digital basado en una investigación sobre **El Dorado** y **La Ciudad Perdida**.
 
+---
+
 ## 📖 Descripción
 
 **La PDA del Investigador** es un Escape Room digital desarrollado como parte de un proyecto literario.
 
-La historia sigue a una joven **cartógrafa y arqueóloga de 24 años**, nacida en Cali, que comienza a investigar la misteriosa muerte de una persona cercana a ella.
+La historia sigue a **Romina López**, una joven cartógrafa y arqueóloga de 24 años, nacida en Cali, que comienza a investigar la misteriosa muerte de una persona cercana a ella: **Arturo Olmos**.
 
-El fallecido se encontraba investigando dos de los grandes misterios de Colombia:
+Arturo se encontraba investigando dos grandes misterios relacionados con Colombia:
 
 - 🪙 **El Dorado**
 - 🌿 **La Ciudad Perdida**
 
-Antes de morir, dejó una **PDA con información protegida, mapas, fotografías, notas y archivos incompletos**.
+Antes de morir, Arturo dejó una **PDA con información protegida, mapas, fotografías, notas y archivos incompletos**.
 
-La protagonista deberá revisar el dispositivo, resolver diferentes acertijos y reconstruir la investigación para descubrir:
+Romina deberá revisar el dispositivo, resolver diferentes acertijos y reconstruir la investigación para descubrir:
 
-> **¿Qué encontró el investigador y por qué alguien quería que permaneciera oculto?**
+> **¿Qué encontró Arturo y por qué alguien quería que permaneciera oculto?**
 
----
+Sin embargo, al final de la investigación quedará una pregunta sin resolver:
 
-## 🎮 Concepto del Escape Room
-
-El proyecto no funciona como una página web tradicional.
-
-El jugador tendrá la sensación de estar utilizando una **PDA perteneciente al investigador fallecido**.
-
-Dentro del dispositivo encontrará diferentes aplicaciones y archivos que deberán ser desbloqueados progresivamente.
-
-Cada acertijo permitirá obtener una nueva pista.
-
-### 🔐 Funcionamiento
-
-```text
-Iniciar sesión
-      ↓
-Explorar la PDA
-      ↓
-Encontrar una pista
-      ↓
-Resolver acertijo
-      ↓
-Desbloquear archivo
-      ↓
-Encontrar nueva información
-      ↓
-Resolver otro acertijo
-      ↓
-Reconstruir la investigación
-      ↓
-Descubrir el secreto
-```
+> **¿Quién es el verdadero jefe de La Mano Negra?**
 
 ---
 
-# 👩‍🔬 Protagonista
+# 🕵️ Historia
 
-La protagonista es:
+Arturo Olmos llevaba tiempo investigando una posible relación entre **El Dorado** y **La Ciudad Perdida**.
 
+Sin embargo, antes de poder terminar su investigación, muere en circunstancias sospechosas.
+
+La versión oficial de su muerte no parece coincidir con algunas de las pistas encontradas por Romina.
+
+Después de su muerte, Romina consigue acceder a su PDA.
+
+Dentro encuentra:
+
+- Notas de investigación.
+- Fotografías.
+- Mapas.
+- Documentos.
+- Mensajes.
+- Archivos bloqueados.
+- Pistas relacionadas con El Dorado y La Ciudad Perdida.
+
+A medida que avanza en la investigación, Romina descubre que Arturo había encontrado información que alguien intentaba mantener oculta.
+
+Detrás de esta investigación aparece una organización conocida como:
+
+> **La Mano Negra**
+
+Romina consigue recuperar la investigación de Arturo y descubrir gran parte del secreto.
+
+Sin embargo, existe un problema:
+
+**nadie sabe quién dirige realmente La Mano Negra.**
+
+---
+
+# 👩‍🔬 Protagonista — Romina López
+
+- **Nombre:** Romina López
 - **Edad:** 24 años
 - **Género:** Mujer
 - **Profesión:** Cartógrafa y arqueóloga
@@ -68,7 +73,9 @@ La protagonista es:
 - **Estatura:** 1,70 m
 - **Personalidad:** Serena, paciente y reservada
 
-Su principal herramienta no es la fuerza física, sino su capacidad para:
+Romina utiliza principalmente sus conocimientos para avanzar en la investigación.
+
+Sus habilidades incluyen:
 
 - Analizar mapas.
 - Investigar documentos.
@@ -80,49 +87,145 @@ Su principal herramienta no es la fuerza física, sino su capacidad para:
 
 ---
 
-# 🕵️ Historia
+# ⚰️ Arturo Olmos
 
-Una persona cercana a la protagonista muere en circunstancias sospechosas.
+**Arturo Olmos** es el investigador fallecido cuya PDA se convierte en el centro del Escape Room.
 
-La versión oficial indica que se trató de un accidente.
+Antes de morir, investigaba la posible relación entre **El Dorado** y **La Ciudad Perdida**.
 
-Sin embargo, esta persona llevaba tiempo investigando una posible relación entre **El Dorado** y **La Ciudad Perdida**.
+Su investigación quedó incompleta.
 
-Después de su muerte, la protagonista encuentra su PDA.
+La PDA contiene los últimos avances de su trabajo y las pistas necesarias para reconstruirlo.
 
-El dispositivo contiene información incompleta y varios archivos protegidos.
-
-Al comenzar la investigación descubre que el fallecido estaba cada vez más cerca de encontrar algo que podría cambiar la manera en que se entienden ambos misterios.
-
-Pero alguien intentó eliminar las pruebas.
+Arturo sabía que su investigación podía ponerlo en peligro, por lo que dejó parte de la información protegida dentro de la PDA.
 
 ---
 
-# 🗺️ Misterio principal
+# 🖐️ La Mano Negra
 
-La investigación gira alrededor de tres preguntas:
+**La Mano Negra** es la organización relacionada con el misterio de la investigación de Arturo.
 
-### 1. ¿Qué descubrió el investigador?
+Su presencia se descubrirá progresivamente durante la historia.
 
-El investigador encontró indicios que relacionan información histórica, mapas y símbolos relacionados con El Dorado y La Ciudad Perdida.
+Al principio, Romina solo encontrará su símbolo y pequeñas referencias.
 
-### 2. ¿Por qué murió?
+Posteriormente descubrirá que la organización estaba relacionada con la investigación de Arturo y que conocía información sobre la conexión entre **El Dorado** y **La Ciudad Perdida**.
 
-La protagonista deberá descubrir si su muerte realmente fue un accidente o si alguien intentó detener su investigación.
+Sin embargo, incluso después de descubrir la verdad principal, Romina no conseguirá identificar al verdadero líder de la organización.
 
-### 3. ¿Qué relación existe entre El Dorado y La Ciudad Perdida?
+### ❓ Misterio pendiente
 
-Esta es la pregunta central de toda la historia.
+> **¿Quién está realmente detrás de La Mano Negra?**
 
-La respuesta se encuentra escondida dentro de la PDA.
+Este misterio queda abierto para una posible continuación.
 
 ---
 
-# 💻 Interfaz de la PDA
+# 🗿 Mitos principales
 
-La interfaz debe parecer un dispositivo de investigación antiguo o especializado.
+## 🪙 El Dorado
 
-## Aplicaciones principales
+El Dorado es uno de los principales elementos del misterio.
+
+La investigación de Arturo busca descubrir si detrás de la leyenda existe información histórica que todavía no ha sido comprendida.
+
+## 🌿 La Ciudad Perdida
+
+La Ciudad Perdida representa el segundo elemento principal de la investigación.
+
+Romina deberá descubrir qué relación puede existir entre este lugar y El Dorado.
+
+---
+
+# 📍 Lugares de la investigación
+
+La historia utilizará tres lugares principales:
+
+### 1. Ciudad Perdida
+
+Uno de los puntos principales relacionados con la investigación de Arturo.
+
+### 2. Santuario de Las Lajas
+
+Una de las ubicaciones donde Romina encontrará información y pistas.
+
+### 3. Teatro Colón
+
+Otra ubicación importante dentro de la investigación de Arturo.
+
+Los tres lugares estarán conectados mediante pistas, documentos, mapas y acertijos.
+
+---
+
+# 📚 Estructura de capítulos
+
+La historia estará dividida en **9 capítulos cortos**.
+
+Cada capítulo deberá avanzar la investigación y terminar con un descubrimiento, giro o **cliffhanger**.
+
+| Cap. | Título | Lugar | Qué ocurre | Pista / acertijo | Final |
+|---|---|---|---|---|---|
+| 1 | **La última investigación** | PDA / Cali | Romina recibe la PDA de Arturo y descubre su investigación. | Contraseña de acceso. | Aparece el símbolo de La Mano Negra. |
+| 2 | **El mapa incompleto** | PDA | Encuentra tres lugares marcados por Arturo. | Mapa y símbolos. | Descubre que Arturo visitó uno de ellos. |
+| 3 | **Las huellas de Las Lajas** | Las Lajas | Romina sigue la primera pista. | Código César / mensaje oculto. | Aparece una referencia directa a La Mano Negra. |
+| 4 | **El archivo del Teatro** | Teatro Colón | Encuentra documentos antiguos investigados por Arturo. | Observación / acróstico. | Descubre que alguien seguía a Arturo. |
+| 5 | **La Ciudad Perdida** | Ciudad Perdida | Encuentra evidencias de la investigación de Arturo. | Mapa + símbolos. | Descubre que La Mano Negra conocía la conexión. |
+| 6 | **La Mano Negra** | PDA | Reconstruye información sobre la organización. | Combinar pistas. | Descubre que Arturo sabía que estaba en peligro. |
+| 7 | **El secreto de Arturo** | Archivo secreto | Accede al archivo protegido. | Último código. | Descubre la verdad que Arturo intentaba proteger. |
+| 8 | **La verdad** | PDA | Recupera toda la investigación. | Última prueba. | La investigación queda salvada, pero el líder sigue oculto. |
+| 9 | **El último registro** | PDA | Encuentra un último archivo relacionado con el líder. | Revelación final. | Nuevo usuario detectado. El jefe sigue sin identificarse. |
+
+---
+
+# 🎮 Escape Room Digital
+
+El proyecto será desarrollado como un **Escape Room digital**.
+
+El jugador tendrá la sensación de estar utilizando la PDA de Arturo y deberá reconstruir su investigación.
+
+La experiencia seguirá aproximadamente este proceso:
+
+```text
+INICIO
+   ↓
+ACCESO A LA PDA
+   ↓
+EXPLORACIÓN
+   ↓
+PRIMERA PISTA
+   ↓
+ACERTIJO
+   ↓
+ARCHIVO DESBLOQUEADO
+   ↓
+NUEVA UBICACIÓN
+   ↓
+NUEVA PISTA
+   ↓
+ACERTIJO
+   ↓
+INVESTIGACIÓN DE ARTURO
+   ↓
+LA MANO NEGRA
+   ↓
+ARCHIVO SECRETO
+   ↓
+VERDAD
+   ↓
+LÍDER DESCONOCIDO
+   ↓
+REVELACIÓN FINAL
+```
+
+---
+
+# 💻 Concepto de la PDA
+
+La PDA debe sentirse como un dispositivo real de investigación y no como una página web convencional.
+
+## Aplicaciones
+
+La pantalla principal podrá contener:
 
 - 🗺️ **Mapas**
 - 📁 **Archivos**
@@ -132,17 +235,15 @@ La interfaz debe parecer un dispositivo de investigación antiguo o especializad
 - 🔒 **Archivo secreto**
 - ⚙️ **Sistema**
 
-Algunas funciones estarán bloqueadas inicialmente.
+Algunas aplicaciones y archivos estarán bloqueados.
 
-El jugador deberá avanzar en la investigación para desbloquearlas.
+El jugador deberá resolver los acertijos para obtener acceso a ellos.
 
 ---
 
-# 🔐 Sistema de acceso
+# 🔐 Inicio de sesión
 
-La PDA tendrá una pantalla inicial de inicio de sesión.
-
-Ejemplo:
+La experiencia comenzará con una pantalla de acceso.
 
 ```text
 =================================
@@ -150,13 +251,10 @@ Ejemplo:
 =================================
 
 PROPIETARIO:
-[Nombre del investigador]
+ARTURO OLMOS
 
 ESTADO:
 FALLECIDO
-
-ÚLTIMA ACTIVIDAD:
-[Fecha / Hora]
 
 PROYECTO:
 EL DORADO / CIUDAD PERDIDA
@@ -174,7 +272,7 @@ CONTRASEÑA:
 =================================
 ```
 
-Si la contraseña es incorrecta:
+### Acceso incorrecto
 
 ```text
 ⚠ ACCESO DENEGADO
@@ -182,7 +280,7 @@ Si la contraseña es incorrecta:
 Credenciales incorrectas.
 ```
 
-Si es correcta:
+### Acceso correcto
 
 ```text
 ✓ ACCESO CONCEDIDO
@@ -194,93 +292,80 @@ Bienvenido al sistema.
 
 # 🧩 Acertijos
 
-Los acertijos son una parte fundamental del Escape Room.
+Los acertijos serán utilizados para que el jugador pueda avanzar en la investigación.
 
-Se utilizarán diferentes tipos de ejercicios mentales.
+## Tipos de acertijos
 
-## Acertijos principales
+### 🔤 Acrósticos
 
-### 🔤 1. Acertijo de acróstico
+Las primeras letras de diferentes palabras o frases pueden formar un mensaje oculto.
 
-Las primeras letras de varias palabras o frases forman un mensaje oculto.
+### 🔐 Código César
 
-### 🔐 2. Código César
+El jugador deberá descifrar mensajes utilizando un desplazamiento de letras.
 
-El jugador deberá descubrir el desplazamiento utilizado para descifrar un mensaje.
+### 🗺️ Mapas
 
-### 🗺️ 3. Acertijo de mapas
+El jugador deberá analizar rutas, símbolos y ubicaciones.
 
-El jugador tendrá que analizar rutas, símbolos o ubicaciones para encontrar una pista.
+### 👁️ Observación
 
-### 👁️ 4. Observación
+Las fotografías pueden contener detalles ocultos.
 
-Una fotografía puede contener un detalle que no sea evidente a primera vista.
+### 🔢 Códigos numéricos
 
-### 🔢 5. Código numérico
+Los números encontrados en documentos o pistas pueden formar contraseñas.
 
-Números encontrados dentro de documentos o mapas podrán convertirse en contraseñas.
+### 🧠 Lógica
 
-### 🧠 6. Lógica
-
-El jugador deberá relacionar diferentes pistas para determinar cuál es la respuesta correcta.
+El jugador deberá relacionar diferentes pistas para obtener una respuesta.
 
 ---
 
-# 🔎 Progresión del Escape Room
+# 🗺️ Sistema de pistas
 
-La experiencia seguirá aproximadamente esta estructura:
+Cada ubicación deberá aportar información para continuar la investigación.
+
+El jugador podrá encontrar:
 
 ```text
-PANTALLA DE INICIO
-       ↓
-INICIO DE SESIÓN
-       ↓
-PDA DESBLOQUEADA
-       ↓
-NOTAS DEL INVESTIGADOR
-       ↓
-PRIMER ACERTIJO
-       ↓
-MAPA 01
-       ↓
-FOTOGRAFÍA
-       ↓
-SEGUNDO ACERTIJO
-       ↓
-MAPA 02
-       ↓
-ARCHIVO DEL INVESTIGADOR
-       ↓
-TERCER ACERTIJO
-       ↓
-ARCHIVO SECRETO
-       ↓
-REVELACIÓN FINAL
+PISTA
+  ↓
+CÓDIGO
+  ↓
+RESPUESTA
+  ↓
+ARCHIVO DESBLOQUEADO
+  ↓
+NUEVA INFORMACIÓN
+  ↓
+SIGUIENTE PISTA
 ```
 
+Los acertijos deben tener relación con la historia y no estar incluidos únicamente para aumentar la dificultad.
+
 ---
 
-# ⏳ Tiempo de la historia
+# ⏳ Tiempo y tensión
 
-La investigación deberá desarrollarse dentro de un periodo limitado.
+La historia tendrá una sensación de urgencia.
 
-La historia tendrá una sensación de urgencia mediante:
+La PDA podrá mostrar:
 
-- Fechas.
-- Horarios.
-- Últimas actividades.
-- Mensajes.
+- Fecha.
+- Hora.
+- Última actividad.
 - Archivos modificados.
+- Mensajes.
+- Alertas.
 - Cuenta regresiva.
-- Alertas del sistema.
+- Estado del sistema.
 
-El objetivo es transmitir la sensación de que la protagonista debe descubrir la verdad antes de que sea demasiado tarde.
+Esto permitirá crear una sensación de que Romina debe descubrir la verdad antes de que sea demasiado tarde.
 
 ---
 
-# 🗃️ Contenido de la PDA
-
-La PDA podrá contener:
+# 📁 Contenido de la PDA
 
 ```text
 📁 ARCHIVOS
@@ -302,50 +387,16 @@ La PDA podrá contener:
 
 🗺️ MAPAS
  ├── Mapa_01
- └── Mapa_02
+ ├── Mapa_02
+ └── Mapa_03
 
 💬 MENSAJES
  ├── Conversación_01
- └── Mensaje_Último
+ └── Último_Mensaje
 
 🔒 ARCHIVO SECRETO
  └── ACCESO RESTRINGIDO
 ```
-
----
-
-# 📚 Inspiración literaria
-
-El proyecto utiliza elementos característicos del thriller de conspiración:
-
-- Misterios históricos.
-- Símbolos.
-- Sociedades secretas.
-- Documentos ocultos.
-- Códigos.
-- Investigación.
-- Lugares históricos.
-- Cuenta regresiva.
-- Revelaciones.
-- Giros argumentales.
-
-La historia utiliza estos elementos como inspiración para crear una trama propia relacionada con mitos y lugares colombianos.
-
----
-
-# 🇨🇴 Elemento colombiano
-
-El proyecto utiliza como base dos grandes misterios:
-
-## 🪙 El Dorado
-
-La leyenda de El Dorado será reinterpretada desde una perspectiva histórica y de investigación.
-
-## 🌿 La Ciudad Perdida
-
-La Ciudad Perdida funcionará como una segunda pieza del misterio.
-
-La historia buscará construir una conexión ficticia entre ambos elementos sin presentar la conspiración como un hecho histórico real.
 
 ---
 
@@ -358,7 +409,6 @@ La PDA tendrá una estética:
 - Antigua.
 - Misteriosa.
 - Inspirada en dispositivos de investigación.
-- Con elementos de interfaz de computadora antigua.
 
 ### Elementos visuales
 
@@ -371,26 +421,25 @@ La PDA tendrá una estética:
 - Archivos bloqueados.
 - Efectos de error.
 - Transiciones.
-- Efectos de carga.
-- Indicadores de batería.
+- Indicador de batería.
 - Indicador de señal.
 - Fecha y hora.
 
-La interfaz debe sentirse como un **dispositivo real**, no como una página web convencional.
+La interfaz debe transmitir la sensación de estar utilizando un dispositivo de investigación.
 
 ---
 
 # 💻 Tecnologías
 
-El proyecto puede desarrollarse utilizando:
+El proyecto será desarrollado principalmente con:
 
 - **HTML5**
 - **CSS3**
 - **JavaScript**
 - **SVG** para mapas y símbolos
-- **LocalStorage** para guardar progreso
+- **LocalStorage** para guardar el progreso
 
-No se requiere una base de datos para el funcionamiento básico.
+No será necesario utilizar una base de datos para el funcionamiento básico.
 
 ---
 
@@ -421,8 +470,6 @@ No se requiere una base de datos para el funcionamiento básico.
 
 # ⚙️ Funcionalidades
 
-El Escape Room deberá contar con:
-
 - [ ] Pantalla de inicio.
 - [ ] Inicio de sesión.
 - [ ] Validación de contraseña.
@@ -441,12 +488,13 @@ El Escape Room deberá contar con:
 - [ ] Efectos de error.
 - [ ] Archivo secreto.
 - [ ] Revelación final.
+- [ ] Misterio del líder de La Mano Negra.
 
 ---
 
-# 🧠 Regla principal del proyecto
+# 🧠 Regla principal
 
-Cada acertijo debe tener una función dentro de la historia.
+Cada acertijo debe cumplir una función dentro de la historia.
 
 ```text
 ACERTIJO
@@ -455,32 +503,30 @@ PISTA
    ↓
 INFORMACIÓN
    ↓
-NUEVO ARCHIVO
+ARCHIVO DESBLOQUEADO
    ↓
-AVANCE DE LA HISTORIA
+AVANCE DE LA INVESTIGACIÓN
    ↓
 NUEVO MISTERIO
 ```
 
-Los acertijos no deben estar incluidos únicamente para dificultar el juego.
-
-Cada uno debe ayudar al jugador a **reconstruir la investigación**.
+El jugador debe sentir que está **descubriendo la investigación de Arturo**, no simplemente resolviendo ejercicios independientes.
 
 ---
 
 # 🎯 Objetivo académico
 
-El proyecto busca convertir el trabajo literario en una experiencia interactiva.
+El proyecto busca transformar el trabajo literario en una experiencia interactiva.
 
 En lugar de presentar únicamente la historia escrita, el público podrá participar directamente en la investigación mediante un Escape Room digital.
 
-Esto permite combinar:
+El proyecto combina:
 
 - Literatura.
-- Investigación histórica.
-- Narrativa.
+- Investigación.
+- Historia.
+- Misterio.
 - Tecnología.
-- Resolución de problemas.
 - Pensamiento lógico.
 - Diseño web.
 
@@ -490,68 +536,96 @@ Esto permite combinar:
 
 El proyecto será desarrollado por un grupo de **4 estudiantes**.
 
-Las tareas pueden dividirse en:
+Las funciones pueden dividirse entre:
 
 ### 📖 Historia
-Desarrollo de personajes, capítulos, pistas y trama.
+
+Desarrollo de personajes, trama, capítulos y pistas.
 
 ### 🧩 Acertijos
-Diseño y prueba de códigos, enigmas y desafíos.
+
+Diseño, programación y pruebas de los enigmas.
 
 ### 💻 Programación
+
 HTML, CSS, JavaScript y funcionamiento de la PDA.
 
 ### 🎨 Diseño
-Interfaz, mapas, imágenes, documentos y elementos visuales.
+
+Interfaz, mapas, documentos, imágenes y elementos visuales.
 
 ---
 
-# 🚧 Elementos pendientes
+# 🚧 Elementos por desarrollar
 
-Todavía deben definirse:
-
-- [ ] Nombre de la protagonista.
-- [ ] Nombre del investigador fallecido.
-- [ ] Causa exacta de la muerte.
-- [ ] Conexión definitiva entre El Dorado y Ciudad Perdida.
-- [ ] Tres ubicaciones colombianas.
-- [ ] Organización o grupo antagonista.
-- [ ] Acertijos definitivos.
-- [ ] Contraseña inicial.
-- [ ] Contenido de los archivos.
-- [ ] Final definitivo.
-- [ ] Diseño final de la PDA.
+- [ ] Escribir los 9 capítulos completos.
+- [ ] Definir la causa exacta de la muerte de Arturo.
+- [ ] Definir la conexión definitiva entre El Dorado y La Ciudad Perdida.
+- [ ] Desarrollar el origen y propósito de La Mano Negra.
+- [ ] Diseñar los acertijos definitivos.
+- [ ] Crear la contraseña inicial.
+- [ ] Crear los documentos de la PDA.
+- [ ] Crear los mensajes de Arturo.
+- [ ] Crear el archivo secreto.
+- [ ] Diseñar el final.
+- [ ] Diseñar la pista relacionada con el líder desconocido.
+- [ ] Implementar la interfaz de la PDA.
 
 ---
 
-# ⚠️ Posible final
+# ⚠️ Final de la historia
 
-Al llegar al último archivo, la PDA puede mostrar:
+Después de resolver los últimos acertijos, Romina consigue recuperar la investigación de Arturo y descubre la verdad sobre la conexión entre **El Dorado, La Ciudad Perdida y La Mano Negra**.
+
+Sin embargo, cuando intenta identificar al líder de la organización, el archivo aparece protegido.
 
 ```text
 =================================
 
-⚠️ NUEVO USUARIO DETECTADO
+ARCHIVO: DIRECCIÓN
 
-CONEXIÓN REMOTA ESTABLECIDA
+ESTADO:
+ACCESO DENEGADO
+
+IDENTIDAD DEL LÍDER:
+████████████████
 
 =================================
 ```
 
-Después:
+Romina intenta acceder nuevamente.
+
+Entonces aparece:
 
 ```text
-Si estás viendo esto...
+⚠️ NUEVO USUARIO DETECTADO
 
-significa que ella también
-descubrió la verdad.
+USUARIO: DESCONOCIDO
 
+ORGANIZACIÓN:
+LA MANO NEGRA
+
+CONEXIÓN REMOTA ESTABLECIDA...
+```
+
+La pantalla comienza a apagarse.
+
+Finalmente aparece:
+
+> **"La verdad fue descubierta.  
+> El responsable todavía no."**
+
+Y la PDA muestra:
+
+```text
 =================================
 
 CONEXIÓN PERDIDA
+
+=================================
 ```
 
-Este final permite dejar abierta la posibilidad de una continuación y genera un último giro para el jugador.
+El misterio de **quién dirige realmente La Mano Negra** queda abierto para una posible segunda parte.
 
 ---
 
@@ -561,11 +635,19 @@ Este final permite dejar abierta la posibilidad de una continuación y genera un
 
 **Tipo:** Escape Room digital literario
 
-**Tema:** Misterio histórico / Thriller / Conspiración
+**Género:** Misterio / Thriller / Conspiración
 
-**Mitos principales:** El Dorado y La Ciudad Perdida
+**Mitos:** El Dorado y La Ciudad Perdida
 
-**Protagonista:** Cartógrafa y arqueóloga
+**Protagonista:** Romina López
+
+**Investigador fallecido:** Arturo Olmos
+
+**Organización:** La Mano Negra
+
+**Lugares:** Ciudad Perdida, Santuario de Las Lajas y Teatro Colón
+
+**Capítulos:** 9
 
 **Plataforma:** Web
 
@@ -577,4 +659,4 @@ Este final permite dejar abierta la posibilidad de una continuación y genera un
 
 ## 🗝️ Frase del proyecto
 
-> **"La historia que todos conocen puede no ser la historia que realmente ocurrió."**
+> **"La verdad fue descubierta. El responsable todavía no."**
