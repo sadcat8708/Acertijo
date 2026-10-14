@@ -1,0 +1,688 @@
+:root {
+    --g:#c6ee8c;
+    --m:#789271;
+    --o:#ff7455
+}
+* {
+    box-sizing:border-box
+}
+body {
+    margin:0;
+    min-height:100vh;
+    background:radial-gradient(circle at 15% 10%,#273723,transparent 30%),#09100c;
+    color:var(--g);
+    font:12px "DM Mono",monospace
+}
+body:before {
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:.13;
+    background:repeating-linear-gradient(0deg,transparent 0 2px,#ccffb91c 3px 4px)
+}
+.scene {
+    min-height:100vh;
+    padding:25px 15px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:18px
+}
+.recovered {
+    margin:0;
+    color:#9caf91;
+    font-size:9px;
+    letter-spacing:.1em;
+    text-align:center
+}
+.device {
+    width:min(94vw,590px);
+    padding:12px 16px 18px;
+    border:2px solid #111914;
+    border-radius:26px 26px 37px 37px;
+    background:linear-gradient(135deg,#536056,#28332d 45%,#1a211d 75%,#46534a);
+    box-shadow:0 27px 60px #000b,inset 0 1px #9ca9986e
+}
+.top,.bottom {
+    height:30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 7px;
+    color:#bac5b7;
+    font-size:8px;
+    letter-spacing:.13em
+}
+.top i {
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:#101712;
+    border:1px solid #738074
+}
+.frame {
+    padding:10px;
+    border:4px solid #171f19;
+    background:#050806;
+    box-shadow:inset 0 0 0 2px #6e7d70
+}
+.screen {
+    min-height:548px;
+    position:relative;
+    overflow:hidden;
+    background:radial-gradient(circle at 80% 5%,#263d20,transparent 37%),linear-gradient(135deg,#111f13,#0c160e);
+    box-shadow:inset 0 0 34px #000
+}
+header {
+    height:30px;
+    padding:0 10px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom:1px solid #a7df762e;
+    color:#a3bf88;
+    font-size:8px;
+    letter-spacing:.04em
+}
+
+.timer {
+    color: var(--o);
+}
+.view {
+    min-height:518px;
+    padding:42px 48px 23px;
+    position:relative
+}
+.view[hidden] {
+    display:none
+}
+.lockicon {
+    font-size:35px;
+    margin-bottom:17px
+}
+.label,label {
+    font-size:9px;
+    letter-spacing:.15em;
+    color:#a9d384;
+    margin:0 0 12px
+}
+h1,h2 {
+    font:400 40px "Share Tech Mono",monospace;
+    letter-spacing:.04em;
+    margin:0;
+    color:#d8ffa6;
+    line-height:1.04
+}
+h1 b {
+    color:var(--o);
+    font-weight:400
+}
+.owner {
+    color:#9db492;
+    line-height:1.75;
+    font-size:11px;
+    margin:25px 0 24px
+}
+.owner strong {
+    color:var(--g)
+}
+em {
+    color:var(--o);
+    font-style:normal
+}
+form {
+    display:grid;
+    gap:8px
+}
+input {
+    height:42px;
+    border:1px solid #9fcd753f;
+    background:#071008;
+    color:var(--g);
+    padding:0 11px;
+    font:16px "DM Mono";
+    outline:none;
+    letter-spacing:.2em
+}
+input:focus {
+    border-color:var(--g);
+    box-shadow:0 0 9px #c6ee8c36
+}
+form button {
+    height:39px;
+    background:#253a1d;
+    border:1px solid #9fc67b;
+    color:#e0ffc0;
+    font:10px "DM Mono";
+    letter-spacing:.11em;
+    text-align:left;
+    padding:0 12px;
+    cursor:pointer
+}
+form button span {
+    float:right;
+    font-size:16px
+}
+#message {
+    color:var(--m);
+    font-size:9px;
+    line-height:1.6
+}
+#message.error {
+    color:var(--o)
+}
+.activity {
+    position:absolute;
+    bottom:22px;
+    border-left:2px solid var(--o);
+    padding-left:9px;
+    font-size:8px;
+    line-height:1.7;
+    color:#7e9878
+}
+.activity strong {
+    color:#c2d5b5;
+    font-weight:400
+}
+nav {
+    display:grid;
+    grid-template-columns:50px 1fr 50px;
+    grid-template-areas:"a b c" ". d .";
+    justify-items:center;
+    gap:7px 18px;
+    padding:8px 64px 0
+}
+nav button {
+    font:10px "DM Mono";
+    color:#b9c5b6;
+    letter-spacing:.08em;
+    height:28px;
+    min-width:42px;
+    background:linear-gradient(#5b695f,#273129);
+    border:1px solid #151b16;
+    border-radius:4px;
+    cursor:pointer
+}
+nav button:nth-child(1) {
+    grid-area:a
+}
+nav button:nth-child(2) {
+    grid-area:b;
+    min-width:80px
+}
+nav button:nth-child(3) {
+    grid-area:c
+}
+nav button:nth-child(4) {
+    grid-area:d;
+    min-width:64px
+}
+h2 {
+    font-size:35px;
+    margin:0 0 12px
+}
+.project {
+    font-size:10px;
+    color:#91a88a
+}
+.apps {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:11px;
+    margin-top:35px
+}
+.apps button {
+    aspect-ratio:1;
+    border:1px solid #9ac6744d;
+    background:#152515;
+    color:var(--g);
+    font:27px "DM Mono";
+    cursor:pointer
+}
+.apps button:hover {
+    background:#263c20;
+    border-color:var(--g)
+}
+.apps small {
+    display:block;
+    margin-top:10px;
+    font-size:8px;
+    letter-spacing:.07em
+}
+.apps .locked {
+    color:#7b8b75;
+    background:#111a11
+}
+.desktopnote {
+    position:absolute;
+    bottom:25px;
+    color:#6f8769;
+    font-size:8px;
+    letter-spacing:.07em
+}
+.back {
+    background:none;
+    border:0;
+    border-bottom:1px solid #82a672;
+    color:#b9d797;
+    font:9px "DM Mono";
+    padding:0 0 5px;
+    cursor:pointer;
+    letter-spacing:.07em;
+    margin-bottom:45px
+}
+.panel {
+    border:1px solid #9ecb723d;
+    padding:16px;
+    background:#0a120a;
+    color:#b7cca8;
+    line-height:1.7
+}
+.panel>div {
+    border-top:1px dashed #9ecb7241;
+    padding-top:18px;
+    margin-top:25px;
+    color:#7f9876;
+    font-size:28px
+}
+.panel>div p {
+    font-size:10px;
+    letter-spacing:.1em;
+    margin:9px 0
+}
+.panel small {
+    font-size:9px;
+    display:block;
+    line-height:1.6
+}
+@media(max-width:430px) {
+    .scene {
+        padding:16px 7px
+    }
+    .device {
+        width:100%;
+        padding-left:10px;
+        padding-right:10px
+    }
+    .screen {
+        min-height:510px
+    }
+    .view {
+        min-height:480px;
+        padding:34px 25px 20px
+    }
+    nav {
+        padding:8px 35px 0;
+        gap:7px 12px
+    }
+    header {
+        font-size:7px
+    }
+    .recovered {
+        font-size:8px
+    }
+    .apps {
+        gap:7px
+    }
+}
+
+/* ========================================
+   CONTENIDO INTERNO DE LAS APLICACIONES
+   ======================================== */
+
+.app-view {
+    overflow-y: auto;
+    max-height: 518px;
+}
+
+.app-toolbar {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 34px;
+}
+
+.app-toolbar .back {
+    margin-bottom: 0;
+}
+
+.app-toolbar .back:last-child {
+    color: var(--o);
+    border-color: var(--o);
+}
+
+.app-description {
+    color: #a7bca0;
+    font-size: 10px;
+    line-height: 1.7;
+    margin: 0 0 18px;
+}
+
+.module-status {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #9ecb723d;
+    color: #7f9876;
+    font-size: 8px;
+    letter-spacing: .08em;
+    padding-bottom: 9px;
+}
+
+.item-list {
+    display: grid;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.record {
+    display: grid;
+    grid-template-columns: 24px 1fr auto;
+    align-items: center;
+    gap: 9px;
+    width: 100%;
+    background: #0a120a;
+    border: 1px solid #9ecb723d;
+    color: var(--g);
+    cursor: pointer;
+    font-family: inherit;
+    padding: 11px;
+    text-align: left;
+}
+
+.record:hover,
+.record.opened {
+    background: #172715;
+    border-color: #9fc67b;
+}
+
+.record-icon {
+    color: #9dc877;
+    font-size: 18px;
+}
+
+.record-body strong,
+.record-body small {
+    display: block;
+}
+
+.record-body strong {
+    font-size: 10px;
+    letter-spacing: .06em;
+}
+
+.record-body small {
+    color: #7f9876;
+    font-size: 8px;
+    line-height: 1.5;
+    margin-top: 3px;
+}
+
+.record-status {
+    color: #9fc67b;
+    font-size: 7px;
+    letter-spacing: .05em;
+    text-align: right;
+}
+
+.record-status.blocked {
+    color: var(--o);
+}
+
+.replace-note {
+    color: #70866a;
+    font-size: 7px;
+    letter-spacing: .06em;
+    line-height: 1.6;
+    margin: 15px 0 0;
+}
+
+.record-back {
+    background: none;
+    border: 0;
+    border-bottom: 1px solid #82a672;
+    color: #b9d797;
+    cursor: pointer;
+    font: 9px "DM Mono";
+    letter-spacing: .07em;
+    margin-bottom: 24px;
+    padding: 0 0 5px;
+}
+
+.document {
+    background: #0a120a;
+    border: 1px solid #9ecb723d;
+    color: #b7cca8;
+    line-height: 1.7;
+    padding: 18px;
+}
+
+.document-id {
+    color: #7f9876;
+    font-size: 8px;
+    letter-spacing: .12em;
+}
+
+.document h3 {
+    color: var(--g);
+    font: 23px "Share Tech Mono";
+    margin: 12px 0;
+}
+
+.document-seal {
+    border-top: 1px dashed #9ecb7241;
+    border-bottom: 1px dashed #9ecb7241;
+    color: #9fc67b;
+    font-size: 9px;
+    letter-spacing: .08em;
+    margin: 18px 0;
+    padding: 10px 0;
+}
+
+.document-locked .document-seal {
+    color: var(--o);
+}
+
+.document-placeholder {
+    color: #82977b;
+    font-size: 9px;
+}
+
+.alert-card {
+    align-items: flex-start;
+    background: #0a120a;
+    border: 1px solid #9ecb723d;
+    display: flex;
+    gap: 13px;
+    margin-bottom: 10px;
+    padding: 15px;
+}
+
+.alert-card > span {
+    color: #9fc67b;
+    font-size: 19px;
+}
+
+.alert-card strong {
+    font-size: 10px;
+    letter-spacing: .05em;
+}
+
+.alert-card p {
+    color: #82977b;
+    font-size: 9px;
+    line-height: 1.6;
+    margin: 8px 0 0;
+}
+
+.alert-card.danger {
+    border-color: #ff74555c;
+}
+
+.alert-card.danger > span,
+.alert-card.danger strong {
+    color: var(--o);
+}
+
+/* ========================================
+   DISEÑO RESPONSIVO Y CONTROLES TÁCTILES
+   ======================================== */
+
+@media (max-width: 700px) {
+    .scene {
+        justify-content: flex-start;
+        min-height: 100svh;
+        padding: 14px 8px 18px;
+    }
+
+    .device {
+        max-width: 590px;
+        width: 100%;
+    }
+
+    .screen {
+        min-height: min(548px, calc(100svh - 137px));
+    }
+
+    .view {
+        min-height: min(518px, calc(100svh - 167px));
+    }
+
+    .app-view {
+        max-height: min(518px, calc(100svh - 167px));
+    }
+
+    .apps button,
+    .record,
+    .back,
+    nav button,
+    form button {
+        touch-action: manipulation;
+    }
+
+    .apps button {
+        min-height: 74px;
+    }
+
+    .record {
+        min-height: 58px;
+    }
+
+    .app-toolbar {
+        margin-bottom: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .screen-status {
+        font-size: 7px;
+    }
+
+    .screen-status span:first-child {
+        max-width: 123px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .view {
+        padding: 28px 21px 18px;
+    }
+
+    .view h1 {
+        font-size: 34px;
+    }
+
+    .view h2 {
+        font-size: 30px;
+    }
+
+    .owner {
+        margin: 19px 0;
+    }
+
+    .activity {
+        bottom: 17px;
+    }
+
+    .apps {
+        gap: 8px;
+        margin-top: 24px;
+    }
+
+    .apps button {
+        font-size: 22px;
+    }
+
+    .apps small {
+        font-size: 7px;
+    }
+
+    .desktopnote {
+        bottom: 17px;
+        max-width: calc(100% - 42px);
+    }
+
+    .app-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .record {
+        grid-template-columns: 20px 1fr;
+    }
+
+    .record-status {
+        grid-column: 2;
+        text-align: left;
+    }
+
+    .document {
+        padding: 14px;
+    }
+
+    nav {
+        gap: 8px 13px;
+        padding: 8px 28px 0;
+    }
+
+    nav button {
+        min-height: 32px;
+    }
+
+    .top,
+    .bottom {
+        font-size: 7px;
+    }
+}
+
+@media (max-width: 360px) {
+    .recovered {
+        font-size: 7px;
+    }
+
+    .device {
+        border-radius: 19px 19px 28px 28px;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .frame {
+        padding: 7px;
+    }
+
+    .view {
+        padding-left: 17px;
+        padding-right: 17px;
+    }
+
+    .view h1 {
+        font-size: 30px;
+    }
+
+    .record-body small {
+        font-size: 7px;
+    }
+}

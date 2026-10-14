@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#111613">
+    <title>PDA-07 — Arturo Olmos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <main class="scene">
+        <p class="recovered">EVIDENCIA RECUPERADA · PROYECTO ACADÉMICO · AVANCE DE PROTOTIPO</p>
+        <section class="device" aria-label="PDA de Arturo Olmos">
+            <div class="top">
+                <i></i>
+                <span>● ● ● ● ● ●</span>
+                <i></i>
+            </div>
+            <div class="frame">
+                <div class="screen" id="screen">
+                    <header>
+                        <span>ARTURO OLMOS / PDA-07</span>
+                        <span id="clock">--:--</span>
+                        <span class="timer" id="timer">T-00:24:00</span>
+                        <span>▰▰▰▰░ 82%</span>
+                    </header>
+                    <section class="view" id="lock">
+                        <div class="lockicon">⌁</div>
+                        <p class="label">SISTEMA DE INVESTIGACIÓN</p>
+                        <h1>
+                            DISPOSITIVO<br>
+                            <b>BLOQUEADO</b>
+                        </h1>
+                        <p class="owner">
+                            PROPIETARIO: <strong>ARTURO OLMOS</strong><br>
+                            ESTADO: <em>FALLECIDO</em>
+                        </p>
+                        <form id="form">
+                            <label for="password">INTRODUZCA CONTRASEÑA</label>
+                            <input id="password" maxlength="12" autocomplete="off">
+                            <button>
+                                DESBLOQUEAR <span>↵</span>
+                            </button>
+                        </form>
+                        <p id="message">PISTA DE DEMOSTRACIÓN: el nombre del propietario es la clave.</p>
+                        <p class="activity">ÚLTIMA ACTIVIDAD REGISTRADA<br><strong>ARCHIVO INTERVENIDO · 23:48</strong></p>
+                    </section>
+                    <section class="view" id="home" hidden>
+                        <p class="label">ACCESO CONCEDIDO</p>
+                        <h2>ESCRITORIO</h2>
+                        <p class="project">INVESTIGACIÓN: <strong>EL DORADO / CIUDAD PERDIDA</strong></p>
+                        <div class="apps">
+                            <button data-app="ARCHIVOS">▤<small>ARCHIVOS</small></button>
+                            <button data-app="MAPAS">⌖<small>MAPAS</small></button>
+                            <button data-app="NOTAS">✦<small>NOTAS</small></button>
+                            <button data-app="FOTOS">▧<small>FOTOS</small></button>
+                            <button data-app="MENSAJES">◫<small>MENSAJES</small></button>
+                            <button data-app="SEGURIDAD" class="locked">▣<small>SEGURIDAD</small></button>
+                        </div>
+                        <p class="desktopnote">6 MÓDULOS DETECTADOS · CONTENIDO NARRATIVO EN DESARROLLO</p>
+                    </section>
+                    <section class="view app-view" id="app" hidden>
+                        <div class="app-toolbar">
+                            <button class="back" id="back">← VOLVER</button>
+                            <button class="back" id="alerts">⚠ ALERTAS <span id="alertcount">1</span></button>
+                        </div>
+                        <p class="label" id="app-label">MÓDULO / 01</p>
+                        <h2 id="apptitle">ARCHIVOS</h2>
+                        <p class="app-description" id="apptext"></p>
+                        <div class="content" id="content"></div>
+                    </section>
+                </div>
+            </div>
+            <div class="bottom">
+                <span>PDA-07 / UNIDAD DE CAMPO</span>
+                <span>◉</span>
+                <span>RECUPERADA</span>
+            </div>
+            <nav>
+                <button>◀</button>
+                <button id="homebutton">HOME</button>
+                <button>▶</button>
+                <button id="enter">ENTER</button>
+            </nav>
+        </section>
+        <p class="recovered">LA PDA ES LA EXPERIENCIA · NO HAY CAPÍTULOS DEFINITIVOS AÚN</p>
+    </main>
+    <script src="js/puzzles.js"></script>
+    <script src="js/story.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
