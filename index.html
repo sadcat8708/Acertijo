@@ -24,7 +24,7 @@
                     <header>
                         <span>ARTURO OLMOS / PDA-07</span>
                         <span id="clock">--:--</span>
-                        <span class="timer" id="timer">T-00:01:00</span>
+                        <span class="timer" id="timer">T-48:00:00</span>
                         <span>▰▰▰▰░ 82%</span>
                         <button class="fullscreen-button" id="fullscreen" type="button" title="Pantalla completa" aria-label="Activar pantalla completa">⛶</button>
                     </header>
@@ -39,6 +39,10 @@
                             PROPIETARIO: <strong>ARTURO OLMOS</strong><br>
                             ESTADO: <em>FALLECIDO</em>
                         </p>
+                        <details class="first-clue">
+                            <summary>NOTA RECUPERADA / PRIMERA LLAVE</summary>
+                            <p>Algunas respuestas están frente a nosotros.<br>Recuerda observar antes de buscar.<br>Tal vez la respuesta esté donde comienza cada cosa.<br>Una pista no siempre necesita ser complicada.<br>Revisa con cuidado lo que te dejé.<br>Observa cada detalle antes de continuar.<br>Olvida por un momento los mapas y los archivos.<br>Lee nuevamente si es necesario.<br>Mira las primeras letras.<br>Ordena lo que encuentres.<br>Solo entonces tendrás la primera llave.</p>
+                        </details>
                         <form id="form">
                             <label for="password">INTRODUZCA CONTRASEÑA</label>
                             <input id="password" maxlength="12" autocomplete="off">
@@ -75,12 +79,12 @@
                     </section>
 
                     <section class="corruption" id="corruption" hidden aria-live="assertive">
-                        <p class="corruption-code">ERROR_0X07 // INTEGRIDAD COMPROMETIDA</p>
+                        <p class="corruption-code">⚠ PROTOCOLO EJECUTADO // INTEGRIDAD COMPROMETIDA</p>
                         <div class="corruption-symbol">▓▒░</div>
                         <h2>CONEXIÓN<br><b>PERDIDA</b></h2>
-                        <p>LA MANO NEGRA HA DETECTADO EL DISPOSITIVO.</p>
-                        <p class="corruption-message">ELIMINANDO ARCHIVOS...<br>MEMORIA CORROMPIDA...<br>ACCESO CANCELADO.</p>
-                        <span>NO CIERRE EL DISPOSITIVO</span>
+                        <p>ELIMINANDO ARCHIVOS...</p>
+                        <p class="corruption-message">INVESTIGACIÓN DE ARTURO OLMOS ████████████<br>MAPAS ████████████<br>DOCUMENTOS ████████████<br>EVIDENCIAS ████████████<br><br>ELIMINACIÓN COMPLETADA.</p>
+                        <span>ARTURO DESCUBRIÓ LA VERDAD.<br>ROMINA LLEGÓ DEMASIADO TARDE PARA DEMOSTRARLA.</span>
                     </section>
                 </div>
             </div>
@@ -90,9 +94,9 @@
                 <span>RECUPERADA</span>
             </div>
             <nav>
-                <button>◀</button>
+                <button id="previousbutton" aria-label="Anterior">◀</button>
                 <button id="homebutton">HOME</button>
-                <button>▶</button>
+                <button id="nextbutton" aria-label="Siguiente">▶</button>
                 <button id="enter">ENTER</button>
             </nav>
         </section>

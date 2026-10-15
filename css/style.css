@@ -487,6 +487,114 @@ h2 {
     margin: 12px 0;
 }
 
+.cipher-table {
+    border: 1px solid #9ecb723d;
+    display: grid;
+    gap: 7px;
+    grid-template-columns: 1fr auto;
+    margin: 15px 0;
+    padding: 12px;
+}
+
+.cipher-table span {
+    color: #7f9876;
+    font-size: 8px;
+    letter-spacing: .08em;
+}
+
+.cipher-table strong {
+    color: var(--g);
+    font-size: 10px;
+    letter-spacing: .1em;
+}
+
+.evidence-file {
+    border-bottom: 1px solid #9ecb723d;
+    border-top: 1px solid #9ecb723d;
+    margin: 16px 0;
+    padding: 12px 0;
+}
+
+.view-image {
+    background: #253a1d;
+    border: 1px solid #9fc67b;
+    color: #e0ffc0;
+    cursor: pointer;
+    font: 9px "DM Mono";
+    letter-spacing: .08em;
+    min-height: 34px;
+    padding: 0 11px;
+}
+
+.arturo-note {
+    align-items: flex-start;
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.arturo-note img {
+    filter: grayscale(1) contrast(1.25);
+    height: 38px;
+    object-fit: cover;
+    opacity: .72;
+    width: 38px;
+}
+
+.arturo-note p {
+    color: #90a889;
+    font-size: 8px;
+    line-height: 1.65;
+    margin: 0;
+}
+
+.image-viewer {
+    align-items: center;
+    background: #020503e8;
+    display: flex;
+    inset: 0;
+    justify-content: center;
+    padding: 18px;
+    position: fixed;
+    z-index: 20;
+}
+
+.image-viewer-panel {
+    max-height: 100%;
+    max-width: min(800px, 100%);
+    position: relative;
+}
+
+.image-viewer-panel p {
+    color: #c6ee8c;
+    font: 10px "DM Mono";
+    letter-spacing: .08em;
+    margin: 0 0 10px;
+}
+
+.image-viewer img {
+    display: block;
+    height: auto;
+    max-height: calc(100vh - 90px);
+    max-width: 100%;
+    width: auto;
+}
+
+.close-viewer {
+    background: #172715;
+    border: 1px solid #9fc67b;
+    color: #e0ffc0;
+    cursor: pointer;
+    font: 23px "DM Mono";
+    height: 32px;
+    line-height: 1;
+    position: absolute;
+    right: 6px;
+    top: 30px;
+    width: 32px;
+    z-index: 1;
+}
+
 .document-seal {
     border-top: 1px dashed #9ecb7241;
     border-bottom: 1px dashed #9ecb7241;
@@ -504,6 +612,68 @@ h2 {
 .document-placeholder {
     color: #82977b;
     font-size: 9px;
+}
+
+.first-clue {
+    border-left: 1px solid #9ecb723d;
+    color: #8fa787;
+    font-size: 8px;
+    line-height: 1.65;
+    margin: 14px 0;
+    padding-left: 9px;
+}
+
+.first-clue summary {
+    color: #b9d797;
+    cursor: pointer;
+    font-size: 8px;
+    letter-spacing: .08em;
+}
+
+.first-clue p {
+    margin-bottom: 0;
+}
+
+.record-disabled {
+    cursor: not-allowed;
+    opacity: .55;
+}
+
+.puzzle {
+    border-top: 1px dashed #9ecb7241;
+    margin-top: 18px;
+    padding-top: 14px;
+}
+
+.puzzle form {
+    display: grid;
+    gap: 8px;
+}
+
+.puzzle input {
+    height: 38px;
+}
+
+.puzzle form button,
+.symbol-button {
+    background: #253a1d;
+    border: 1px solid #9fc67b;
+    color: #e0ffc0;
+    cursor: pointer;
+    font: 10px "DM Mono";
+    letter-spacing: .09em;
+    min-height: 38px;
+}
+
+.symbol-button {
+    font-size: 27px;
+    width: 64px;
+}
+
+.success {
+    color: #c6ee8c;
+    font-size: 9px;
+    line-height: 1.6;
 }
 
 .alert-card {
@@ -700,11 +870,14 @@ h2 {
 }
 
 @media (max-width: 480px) {
-    .screen-status {
+    header {
         font-size: 7px;
+        gap: 4px;
+        padding-left: 7px;
+        padding-right: 7px;
     }
 
-    .screen-status span:first-child {
+    header > span:first-child {
         max-width: 123px;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -813,14 +986,18 @@ h2 {
 }
 
 @media (max-width: 480px) {
-    header {
-        gap: 4px;
-        padding-left: 7px;
-        padding-right: 7px;
-    }
-
     .fullscreen-button {
         font-size: 12px;
         padding: 2px;
+    }
+}
+
+@media (max-width: 390px) {
+    header > span:nth-of-type(4) {
+        display: none;
+    }
+
+    .timer {
+        font-size: 6px;
     }
 }
