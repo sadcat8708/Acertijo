@@ -115,6 +115,59 @@ header {
 .view[hidden] {
     display:none
 }
+
+.power-view,
+.boot-view {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.power-symbol {
+    border: 2px solid #8cae75;
+    border-radius: 50%;
+    color: #c6ee8c;
+    font-size: 39px;
+    height: 72px;
+    line-height: 65px;
+    margin: 18px 0;
+    width: 72px;
+}
+
+.power-copy {
+    color: #82977b;
+    font-size: 9px;
+    letter-spacing: .08em;
+    line-height: 1.8;
+    margin: 24px 0;
+}
+
+.screen-power {
+    background: #253a1d;
+    border: 1px solid #9fc67b;
+    color: #e0ffc0;
+    cursor: pointer;
+    font: 10px "DM Mono";
+    letter-spacing: .1em;
+    min-height: 40px;
+    padding: 0 16px;
+}
+
+.boot-lines {
+    color: #9dc877;
+    display: grid;
+    font-size: 9px;
+    gap: 10px;
+    letter-spacing: .08em;
+    margin: 25px 0 36px;
+    text-align: left;
+}
+
+.boot-lines span::before {
+    content: '✓ ';
+}
 .lockicon {
     font-size:35px;
     margin-bottom:17px
@@ -506,6 +559,9 @@ h2 {
     color: var(--g);
     font-size: 10px;
     letter-spacing: .1em;
+    max-width: 60%;
+    overflow-wrap: anywhere;
+    text-align: right;
 }
 
 .evidence-file {
@@ -578,6 +634,116 @@ h2 {
     max-height: calc(100vh - 90px);
     max-width: 100%;
     width: auto;
+}
+
+.interactive-evidence {
+    cursor: pointer;
+}
+
+.interactive-evidence:hover {
+    filter: brightness(1.16);
+    outline: 1px solid #c6ee8c;
+}
+
+.image-instruction {
+    color: #c6ee8c;
+    font-size: 8px;
+    letter-spacing: .06em;
+}
+
+.route-map {
+    border-bottom: 1px solid #9ecb723d;
+    border-top: 1px solid #9ecb723d;
+    margin: 17px 0;
+    padding: 12px 0;
+}
+
+.route-map > p:first-child,
+.route-selection {
+    color: #8fa787;
+    font-size: 8px;
+    letter-spacing: .06em;
+    line-height: 1.6;
+}
+
+.route-area {
+    height: 190px;
+    margin: 11px 0;
+    position: relative;
+}
+
+.route-area svg {
+    height: 100%;
+    inset: 0;
+    position: absolute;
+    width: 100%;
+}
+
+.route-area path {
+    fill: none;
+    stroke: #789271;
+    stroke-dasharray: 4 5;
+    stroke-width: 1.5;
+}
+
+.map-point {
+    background: #152515;
+    border: 1px solid #9ecb723d;
+    color: #c6ee8c;
+    cursor: pointer;
+    font: 8px "DM Mono";
+    left: 50%;
+    letter-spacing: .04em;
+    min-height: 43px;
+    padding: 6px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+
+.map-point::before {
+    background: #c6ee8c;
+    border-radius: 50%;
+    content: '';
+    display: block;
+    height: 7px;
+    margin: -10px auto 5px;
+    width: 7px;
+}
+
+.map-point:hover,
+.map-point.selected {
+    background: #253a1d;
+    border-color: #c6ee8c;
+}
+
+.map-point:disabled {
+    cursor: default;
+}
+
+.point-lajas {
+    left: 18%;
+    top: 72%;
+}
+
+.point-colon {
+    left: 50%;
+    top: 22%;
+}
+
+.point-perdida {
+    left: 82%;
+    top: 72%;
+}
+
+.route-reset {
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #82a672;
+    color: #b9d797;
+    cursor: pointer;
+    font: 8px "DM Mono";
+    letter-spacing: .06em;
+    padding: 0 0 4px;
 }
 
 .close-viewer {

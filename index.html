@@ -28,6 +28,18 @@
                         <span>▰▰▰▰░ 82%</span>
                         <button class="fullscreen-button" id="fullscreen" type="button" title="Pantalla completa" aria-label="Activar pantalla completa">⛶</button>
                     </header>
+                    <section class="view power-view" id="off">
+                        <p class="label">PDA-07 / UNIDAD DE CAMPO</p>
+                        <div class="power-symbol">◯</div>
+                        <h1>SISTEMA<br><b>DESACTIVADO</b></h1>
+                        <p class="power-copy">DISPOSITIVO RECUPERADO<br>PROPIETARIO: ARTURO OLMOS</p>
+                        <button class="screen-power" id="power-button">ENCENDER PDA</button>
+                    </section>
+                    <section class="view boot-view" id="boot" hidden>
+                        <p class="label">ARTURO OLMOS / PERSONAL PDA</p>
+                        <div class="boot-lines"><span>INICIANDO SISTEMA...</span><span>VERIFICANDO ARCHIVOS...</span><span>CARGANDO MÓDULOS...</span></div>
+                        <h2>SISTEMA<br>INICIADO</h2>
+                    </section>
                     <section class="view" id="lock">
                         <div class="lockicon">⌁</div>
                         <p class="label">SISTEMA DE INVESTIGACIÓN</p>
@@ -41,7 +53,7 @@
                         </p>
                         <details class="first-clue">
                             <summary>NOTA RECUPERADA / PRIMERA LLAVE</summary>
-                            <p>Algunas respuestas están frente a nosotros.<br>Recuerda observar antes de buscar.<br>Tal vez la respuesta esté donde comienza cada cosa.<br>Una pista no siempre necesita ser complicada.<br>Revisa con cuidado lo que te dejé.<br>Observa cada detalle antes de continuar.<br>Olvida por un momento los mapas y los archivos.<br>Lee nuevamente si es necesario.<br>Mira las primeras letras.<br>Ordena lo que encuentres.<br>Solo entonces tendrás la primera llave.</p>
+                            <p>Algunas respuestas están frente a nosotros.<br>Recuerda que nada se pierde del todo.<br>Tal vez encuentres lo que busco.<br>Una sombra vigila cada registro.<br>Revisa con cuidado lo que te dejé.<br>Observa cada detalle antes de continuar.<br>Olvida por un momento los mapas y los archivos.<br>Las respuestas no siempre son visibles.<br>Mucho de lo que sabes puede engañarte.<br>Otros ya intentaron descubrirlo.<br>Solo entonces sabrás la verdad.</p>
                         </details>
                         <form id="form">
                             <label for="password">INTRODUZCA CONTRASEÑA</label>
@@ -50,7 +62,7 @@
                                 DESBLOQUEAR <span>↵</span>
                             </button>
                         </form>
-                        <p id="message">PISTA DE DEMOSTRACIÓN: el nombre del propietario es la clave.</p>
+                        <p id="message">INGRESA LA CLAVE PARA CONTINUAR.</p>
                         <p class="activity">ÚLTIMA ACTIVIDAD REGISTRADA<br><strong>ARCHIVO INTERVENIDO · 23:48</strong></p>
                     </section>
                     <section class="view" id="home" hidden>
@@ -85,6 +97,7 @@
                         <p>ELIMINANDO ARCHIVOS...</p>
                         <p class="corruption-message">INVESTIGACIÓN DE ARTURO OLMOS ████████████<br>MAPAS ████████████<br>DOCUMENTOS ████████████<br>EVIDENCIAS ████████████<br><br>ELIMINACIÓN COMPLETADA.</p>
                         <span>ARTURO DESCUBRIÓ LA VERDAD.<br>ROMINA LLEGÓ DEMASIADO TARDE PARA DEMOSTRARLA.</span>
+                        <button class="screen-power" id="restart-failure">REINICIAR INVESTIGACIÓN</button>
                     </section>
                 </div>
             </div>
