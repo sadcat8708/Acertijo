@@ -660,3 +660,50 @@ El misterio de **quién dirige realmente La Mano Negra** queda abierto para una 
 ## 🗝️ Frase del proyecto
 
 > **"La verdad fue descubierta. El responsable todavía no."**
+
+---
+
+## Guía técnica del prototipo
+
+### Ejecución local
+
+No se requieren dependencias ni compilación. Abre `index.html` directamente en un navegador moderno. Si el navegador restringe el almacenamiento al abrir archivos locales, sirve esta carpeta con cualquier servidor estático local. Las fuentes de Google Fonts requieren conexión; el resto de la interfaz utiliza recursos incluidos en el proyecto.
+
+### Estructura y responsabilidades
+
+- `index.html`: estructura de las pantallas y controles físicos.
+- `css/style.css`: carcasa, pantalla, aplicaciones y diseño adaptable.
+- `js/main.js`: navegación, presentación, temporizador y guardado del progreso.
+- `js/puzzles.js`: respuestas actuales y validación común. Los acertijos existentes siguen siendo provisionales.
+- `js/story.js`: datos narrativos y referencias a imágenes, separados de la presentación.
+- `assets/images/`: imágenes actualmente usadas por los registros.
+- `docs/PRD.md`: requisitos del proyecto.
+
+### Progreso local
+
+La aplicación guarda el progreso en `localStorage` del navegador bajo `pda-investigation-v3` y el plazo bajo `pda-investigation-deadline-v3`. El progreso queda asociado al navegador y al origen con el que se abrió el proyecto; borrar los datos del sitio lo elimina. No es una protección de seguridad. Si el JSON del progreso no se puede leer, el prototipo inicia una sesión nueva y conserva una copia de respaldo en `pda-investigation-v3-corrupt-backup` cuando el almacenamiento lo permite. Si el navegador no permite escribir, la sesión continúa sin persistencia.
+
+El reinicio voluntario se encuentra dentro de Seguridad y pide confirmación. La duración y la regla actual del temporizador de 48 horas se conservan.
+
+### Añadir contenido más adelante
+
+Cuando el equipo defina acertijos, añade sus datos a `puzzles` en `js/puzzles.js` y referencia el identificador desde un registro en `pdaContent` dentro de `js/story.js`. Los registros admiten actualmente título, estado, texto, etapa de desbloqueo e imagen. No se han definido aquí nuevos acertijos, planos ni evidencias. Para integrar planos futuros, se pueden guardar los recursos en `assets/images/` y asociar su ruta al registro correspondiente.
+
+El registro `ARTURO_OLMOS_FINAL` conserva el identificador `finalCode`. Su estado específico (fase, distribución de bombas y casillas reveladas/marcadas) se guarda junto con el progreso general para reanudar la misma partida. Cada tablero nuevo es aleatorio, tiene 8 × 8 casillas y cuatro sectores corruptos distribuidos en al menos tres zonas distintas. La primera selección está protegida y reiniciar el tablero genera otra distribución sin reiniciar la partida.
+
+### Alcance actual y pendientes
+
+La base incluye encendido, bloqueo, escritorio, seis aplicaciones, registros, guardado local, temporizador y controles de navegación. Seguridad contiene el reinicio y el archivo de dirección permanece sujeto a su etapa de acceso. Los capítulos completos, el contenido definitivo de las aplicaciones, los planos, las alertas narrativas y el sistema definitivo de pistas dependen del material que el equipo está preparando. La progresión actual usa etapas y acertijos provisionales; no establece todavía la secuencia narrativa final.
+
+### Pruebas automatizadas
+
+Con Node.js instalado, ejecuta `node --test tests/minesweeper.test.js`. Las pruebas cubren el tablero, números vecinos, banderas, derrota, reinicio del tablero, victoria y la clave ESMERALDA. La presentación visual todavía requiere comprobación manual en navegador.
+
+Para abrir directamente `ARTURO_OLMOS_FINAL` durante una comprobación manual, inicia la PDA y en la consola del navegador establece una partida de desarrollo en la etapa requerida:
+
+```js
+localStorage.setItem('pda-investigation-v3', JSON.stringify({ powered: true, unlocked: true, stage: 8, solved: ['caesar', 'mark', 'route', 'sierra', 'city', 'dorado', 'hand'], alertsRead: true, completed: false, failed: false }));
+location.reload();
+```
+
+Luego abre **Archivos → ARTURO_OLMOS_FINAL**. El primer clic es seguro; los ceros revelan automáticamente las casillas seguras contiguas. Marca o desmarca usando el botón **Modo bandera**. Si revelas un sector corrupto después del primer movimiento, reinicia solo ese tablero. Completa todas las casillas seguras, responde **ESMERALDA** a la adivinanza y vuelve a introducirla como código. Esta partida de desarrollo altera el progreso guardado de ese navegador; para restaurar una partida limpia, usa el reinicio de Seguridad.

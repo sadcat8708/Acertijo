@@ -12,7 +12,7 @@
 </head>
 <body>
     <main class="scene">
-        <p class="recovered">EVIDENCIA RECUPERADA · PROYECTO ACADÉMICO · AVANCE DE PROTOTIPO</p>
+        <p class="recovered">UNIDAD FORENSE // DISPOSITIVO RECUPERADO</p>
         <section class="device" aria-label="PDA de Arturo Olmos">
             <div class="top">
                 <i></i>
@@ -20,12 +20,12 @@
                 <i></i>
             </div>
             <div class="frame">
-                <div class="screen" id="screen">
+                <div class="screen power-off" id="screen">
                     <header>
                         <span>ARTURO OLMOS / PDA-07</span>
                         <span id="clock">--:--</span>
-                        <span class="timer" id="timer">T-48:00:00</span>
-                        <span>▰▰▰▰░ 82%</span>
+                        <span class="timer" id="timer">T-EN ESPERA</span>
+                        <span class="system-indicator"><i aria-hidden="true"></i>LOCAL</span>
                         <button class="fullscreen-button" id="fullscreen" type="button" title="Pantalla completa" aria-label="Activar pantalla completa">⛶</button>
                     </header>
                     <section class="view power-view" id="off">
@@ -33,12 +33,15 @@
                         <div class="power-symbol">◯</div>
                         <h1>SISTEMA<br><b>DESACTIVADO</b></h1>
                         <p class="power-copy">DISPOSITIVO RECUPERADO<br>PROPIETARIO: ARTURO OLMOS</p>
-                        <button class="screen-power" id="power-button">ENCENDER PDA</button>
+                        <button class="screen-power" id="power-button" type="button">ENCENDER PDA</button>
                     </section>
                     <section class="view boot-view" id="boot" hidden>
-                        <p class="label">ARTURO OLMOS / PERSONAL PDA</p>
-                        <div class="boot-lines"><span>INICIANDO SISTEMA...</span><span>VERIFICANDO ARCHIVOS...</span><span>CARGANDO MÓDULOS...</span></div>
-                        <h2>SISTEMA<br>INICIADO</h2>
+                        <p class="label">PDA-07 // ARRANQUE LOCAL</p>
+                        <div class="boot-mark" aria-hidden="true"><span>07</span></div>
+                        <div class="boot-lines"><span>INICIALIZANDO SISTEMA</span><span>CARGANDO INTERFAZ LOCAL</span><span>PREPARANDO ACCESO PROTEGIDO</span></div>
+                        <div class="boot-progress" aria-hidden="true"><span></span></div>
+                        <p class="boot-note">SECUENCIA VISUAL // ESTADOS DE INTERFAZ</p>
+                        <h2>SISTEMA<br><b>PREPARADO</b></h2>
                     </section>
                     <section class="view" id="lock">
                         <div class="lockicon">⌁</div>
@@ -57,27 +60,35 @@
                         </details>
                         <form id="form">
                             <label for="password">INTRODUZCA CONTRASEÑA</label>
-                            <input id="password" maxlength="12" autocomplete="off">
+                            <input id="password" type="password" maxlength="12" autocomplete="off" required>
                             <button>
                                 DESBLOQUEAR <span>↵</span>
                             </button>
                         </form>
-                        <p id="message">INGRESA LA CLAVE PARA CONTINUAR.</p>
+                        <p id="message" role="status" aria-live="polite">INGRESA LA CLAVE PARA CONTINUAR.</p>
                         <p class="activity">ÚLTIMA ACTIVIDAD REGISTRADA<br><strong>ARCHIVO INTERVENIDO · 23:48</strong></p>
                     </section>
                     <section class="view" id="home" hidden>
                         <p class="label">ACCESO CONCEDIDO</p>
                         <h2>ESCRITORIO</h2>
-                        <p class="project">INVESTIGACIÓN: <strong>EL DORADO / CIUDAD PERDIDA</strong></p>
+                        <p class="project"><span>EXPEDIENTE ACTIVO</span><strong>EL DORADO // CIUDAD PERDIDA</strong></p>
                         <div class="apps">
-                            <button data-app="ARCHIVOS">▤<small>ARCHIVOS</small></button>
-                            <button data-app="MAPAS">⌖<small>MAPAS</small></button>
-                            <button data-app="NOTAS">✦<small>NOTAS</small></button>
-                            <button data-app="FOTOS">▧<small>FOTOS</small></button>
-                            <button data-app="MENSAJES">◫<small>MENSAJES</small></button>
-                            <button data-app="SEGURIDAD" class="locked">▣<small>SEGURIDAD</small></button>
+                            <button data-app="ARCHIVOS"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 3.5h11l5 5v20H8zM19 3.5v6h5M12 15h8M12 19h8M12 23h6"/></svg><small>ARCHIVOS</small></button>
+                            <button data-app="MAPAS"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="m3.5 7 8-3 9 3 8-3v21l-8 3-9-3-8 3zM11.5 4v21M20.5 7v21M15 12l4 4-4 4-4-4z"/></svg><small>MAPAS</small></button>
+                            <button data-app="NOTAS"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 4.5h19v24H7zM11 4.5v24M15 11h7M15 16h7M15 21h7M4 9h3M4 15h3M4 21h3"/></svg><small>NOTAS</small></button>
+                            <button data-app="FOTOS"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3.5 6.5h25v19h-25zM4 22l7-7 5 5 4-4 8 8M21.5 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg><small>FOTOS</small></button>
+                            <button data-app="MENSAJES"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 5.5h24v17H15l-7 5v-5H4zM9 11h14M9 16h10"/></svg><small>MENSAJES</small></button>
+                            <button data-app="SEGURIDAD"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3 27 7v8c0 7-4.5 11-11 14-6.5-3-11-7-11-14V7zM12 15v-2a4 4 0 0 1 8 0v2M11 15h10v7H11z"/></svg><small>SEGURIDAD</small></button>
                         </div>
-                        <p class="desktopnote">6 MÓDULOS DETECTADOS · CONTENIDO NARRATIVO EN DESARROLLO</p>
+                        <aside class="gps-panel" id="gps-panel" data-state="searching" data-fix="" role="status" aria-live="polite" aria-atomic="true" aria-label="Estado GPS de la investigación">
+                            <span class="gps-reticle" aria-hidden="true"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="10"/><circle cx="16" cy="16" r="3"/><path d="M16 1v7M16 24v7M1 16h7M24 16h7"/></svg></span>
+                            <span class="gps-readout">
+                                <span class="gps-topline"><span class="gps-label">GPS / ERROR DE SINCRONIZACIÓN</span><span class="gps-status">SEÑAL: BUSCANDO...</span></span>
+                                <span class="gps-dataline"><strong class="gps-location">POSICIÓN: DESCONOCIDA</strong><span class="gps-coordinates">--.------, --.------</span></span>
+                            </span>
+                            <span class="gps-signal" aria-hidden="true"><i></i><i></i><i></i></span>
+                        </aside>
+                        <p class="desktopnote">SEIS MÓDULOS OPERATIVOS · REGISTRO LOCAL</p>
                     </section>
                     <section class="view app-view" id="app" hidden>
                         <div class="app-toolbar">
@@ -94,8 +105,8 @@
                         <p class="corruption-code">⚠ PROTOCOLO EJECUTADO // INTEGRIDAD COMPROMETIDA</p>
                         <div class="corruption-symbol">▓▒░</div>
                         <h2>CONEXIÓN<br><b>PERDIDA</b></h2>
-                        <p>ELIMINANDO ARCHIVOS...</p>
-                        <p class="corruption-message">INVESTIGACIÓN DE ARTURO OLMOS ████████████<br>MAPAS ████████████<br>DOCUMENTOS ████████████<br>EVIDENCIAS ████████████<br><br>ELIMINACIÓN COMPLETADA.</p>
+                        <p>PLAZO DE INVESTIGACIÓN AGOTADO</p>
+                        <p class="corruption-message">INVESTIGACIÓN DE ARTURO OLMOS<br>MAPAS<br>DOCUMENTOS<br>EVIDENCIAS<br><br>ACCESO SUSPENDIDO.</p>
                         <span>ARTURO DESCUBRIÓ LA VERDAD.<br>ROMINA LLEGÓ DEMASIADO TARDE PARA DEMOSTRARLA.</span>
                         <button class="screen-power" id="restart-failure">REINICIAR INVESTIGACIÓN</button>
                     </section>
@@ -113,10 +124,11 @@
                 <button id="enter">ENTER</button>
             </nav>
         </section>
-        <p class="recovered">LA PDA ES LA EXPERIENCIA · NO HAY CAPÍTULOS DEFINITIVOS AÚN</p>
+        <p class="recovered">TERMINAL DE INVESTIGACIÓN // ACCESO RESTRINGIDO</p>
     </main>
     <script src="js/puzzles.js"></script>
     <script src="js/story.js"></script>
+    <script src="js/gps.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

@@ -7,7 +7,7 @@ const pdaContent = {
         { title: 'EVIDENCIA_002 / MENSAJE CIFRADO', status: 'NUEVO', text: 'Toda letra es un alma desterrada, y el alfabeto, una senda donde las sombras caminan contra el sol. Busca la morada que yace tras la huella, mas no confíes en la ley cuando el espejo se quiebre. Tres heraldos, señalados por una marca que el azar no gobierna, desafiarán el ocaso y reclamarán el paso contrario. Solo quien distinga a los condenados de los elegidos oirá el nombre que la piedra guarda.', puzzle: 'caesar', image: 'assets/images/arcangel-san-miguel.jpg' },
         { title: 'INFORME LAS LAJAS', status: 'BLOQUEADO', text: 'Arturo investigó el Santuario de Las Lajas. Hay una marca en el registro visual.', unlock: 2 },
         { title: 'EVIDENCIA_005 / TELÓN DE BOCA', status: 'BLOQUEADO', text: 'TEATRO COLÓN. Registro visual recuperado de los archivos de Arturo.', unlock: 4, image: 'assets/images/evidencia-005-telon-colon.jpg' },
-        { title: 'ARTURO_OLMOS_FINAL', status: 'BLOQUEADO', text: 'Archivo protegido. El código reúne los tres destinos de la investigación.', puzzle: 'finalCode', unlock: 8 }
+        { title: 'ARTURO_OLMOS_FINAL', status: 'BLOQUEADO', text: 'Registro final de Arturo. El acceso requiere verificación.', puzzle: 'finalCode', unlock: 8 }
     ] },
     MAPAS: { label: 'MÓDULO / 02', description: 'Rutas y marcas de la investigación.', items: [
         { title: 'RUTA DE ARTURO', status: 'BLOQUEADO', text: 'Ubicaciones registradas por Arturo.', puzzle: 'route', unlock: 3 },
