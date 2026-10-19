@@ -13,7 +13,7 @@ vm.runInContext(`${puzzleSource}\nglobalThis.api = {
     FORENSIC_BOARD_SIZE, FORENSIC_CELL_COUNT, FORENSIC_MINE_COUNT, generateForensicMineIndices, isValidForensicMineIndices,
     createForensicBoard, createMinefieldState, normalizeMinefieldState,
     toggleMinefieldFlag, revealMinefieldCell, resetForensicBoardProgress, advanceForensicPhase,
-    validateEmeraldKey, puzzles, validatePuzzleAnswer, ROUTE_SEQUENCE, getRouteProgress,
+    validateEmeraldKey, normalizeAnswer, puzzles, validatePuzzleAnswer, ROUTE_SEQUENCE, getRouteProgress,
     ORGANIZATION_INITIAL_ROTATIONS, ORGANIZATION_SOLUTION_ROTATIONS, createOrganizationPuzzleState, normalizeOrganizationPuzzleState,
     rotateOrganizationTile, getOrganizationTileConnections, isOrganizationNetworkSolved, isOrganizationPuzzleConfigurationValid,
     verifyOrganizationNetwork, resetOrganizationPuzzleProgress
@@ -72,7 +72,12 @@ test('la sección integra verificación, revelación y contraseña en el orden r
     assert.match(renderer, /REINICIAR ROMPECABEZAS/);
     assert.ok(renderer.indexOf('SISTEMA RESTAURADO') < renderer.indexOf('LA MANO NEGRA'));
     assert.ok(renderer.indexOf('LA MANO NEGRA') < renderer.indexOf('organization-password-stage'));
-    assert.match(renderer, /normalizeAnswer\(keyInput\.value\) !== 'ARTUROOLMOS'/);
+    assert.match(renderer, /Introduce la contraseña de la organización identificada para continuar/);
+    assert.match(renderer, /normalizeAnswer\(circuitPasswordInput\.value\) !== normalizeAnswer\('LA MANO NEGRA'\)/);
+    assert.match(renderer, /document\.querySelector\('#organization-password'\)/);
+    assert.doesNotMatch(renderer, /ARTUROOLMOS/);
+    assert.equal(api.normalizeAnswer('LA MANO NEGRA'), 'LAMANONEGRA');
+    assert.notEqual(api.normalizeAnswer('ARTUROOLMOS'), 'LAMANONEGRA');
     assert.match(styleSource, /\.organization-tile svg path\s*\{/);
 });
 
