@@ -17,9 +17,11 @@ const fullscreenButton = document.querySelector('#fullscreen');
 const powerButton = document.querySelector('#power-button');
 const screen = document.querySelector('#screen');
 const gpsPanel = document.querySelector('#gps-panel');
+const progressText = document.querySelector('#progress-text');
+const progressBar = document.querySelector('#progress-bar');
 const STORAGE_KEY = 'pda-investigation-v3';
 const TIMER_KEY = 'pda-investigation-deadline-v3';
-const TIMER_DURATION = 48 * 60 * 60 * 1000;
+const TIMER_DURATION = 35 * 60 * 1000;
 let activeApp = 'ARCHIVOS';
 let activeItem = null;
 let timerInterval = null;
@@ -29,10 +31,39 @@ let storageAvailable = true;
 let storageWarningShown = false;
 let bootSequenceRunning = false;
 let bootTimeoutId = null;
+let audioContext = null;
 const appNames = Object.keys(pdaContent);
 
+const playPdaSound = (kind) => {
+    const AudioEngine = window.AudioContext || window.webkitAudioContext;
+    if (!AudioEngine) return;
+    try {
+        audioContext ||= new AudioEngine();
+        if (audioContext.state === 'suspended') audioContext.resume();
+        const sequences = {
+            boot: [[190, 0, .09], [320, .1, .09], [520, .21, .13]],
+            success: [[520, 0, .1], [740, .12, .16]],
+            error: [[190, 0, .13], [140, .15, .16]],
+            failure: [[360, 0, .14], [280, .16, .14], [180, .33, .28]]
+        };
+        const now = audioContext.currentTime;
+        (sequences[kind] || []).forEach(([frequency, delay, duration]) => {
+            const oscillator = audioContext.createOscillator();
+            const volume = audioContext.createGain();
+            oscillator.type = kind === 'failure' ? 'sawtooth' : 'square';
+            oscillator.frequency.setValueAtTime(frequency, now + delay);
+            volume.gain.setValueAtTime(.0001, now + delay);
+            volume.gain.exponentialRampToValueAtTime(.045, now + delay + .015);
+            volume.gain.exponentialRampToValueAtTime(.0001, now + delay + duration);
+            oscillator.connect(volume).connect(audioContext.destination);
+            oscillator.start(now + delay);
+            oscillator.stop(now + delay + duration + .02);
+        });
+    } catch { /* El sonido es opcional: la PDA continúa aunque el navegador lo bloquee. */ }
+};
+
 const defaultFinalPuzzle = () => ({ phase: 'minefield', minefield: createMinefieldState() });
-const defaultProgress = () => ({ powered: false, unlocked: false, stage: 1, solved: [], alertsRead: false, completed: false, failed: false, finalPuzzle: defaultFinalPuzzle(), organizationPuzzle: createOrganizationPuzzleState() });
+const defaultProgress = () => ({ powered: false, unlocked: false, stage: 1, solved: [], alertsRead: false, completed: false, failed: false, interferenceRecovered: false, finalPuzzle: defaultFinalPuzzle(), organizationPuzzle: createOrganizationPuzzleState() });
 const readStorage = (key) => {
     try { return localStorage.getItem(key); }
     catch { storageAvailable = false; showStorageWarning(); return null; }
@@ -63,6 +94,7 @@ const normalizeProgress = (value) => {
         alertsRead: value.alertsRead === true,
         completed: value.completed === true,
         failed: value.failed === true,
+        interferenceRecovered: value.interferenceRecovered === true,
         finalPuzzle: {
             phase: finalPhase,
             minefield
@@ -110,10 +142,18 @@ const renderGpsPanel = (progress) => {
     gpsPanel.querySelector('.gps-location').textContent = fix?.place || 'POSICIÓN: DESCONOCIDA';
     gpsPanel.querySelector('.gps-coordinates').textContent = fix?.coordinates || '--.------, --.------';
 };
+const renderInvestigationProgress = (progress) => {
+    if (!progressText || !progressBar) return;
+    const current = Math.max(1, Math.min(10, Number(progress.stage) || 1));
+    progressText.textContent = `${String(current).padStart(2, '0')}/10`;
+    progressBar.style.width = `${current * 10}%`;
+    progressBar.parentElement.setAttribute('aria-valuenow', String(current));
+};
 const saveProgress = (progress) => {
     memoryProgress = normalizeProgress(progress);
     if (!writeStorage(STORAGE_KEY, JSON.stringify(memoryProgress))) showStorageWarning();
     renderGpsPanel(memoryProgress);
+    renderInvestigationProgress(memoryProgress);
     return memoryProgress;
 };
 const showStorageWarning = () => {
@@ -145,6 +185,7 @@ const triggerFailure = () => {
     if (progress.failed || progress.completed) return;
     saveProgress({ ...progress, failed: true });
     clearInterval(timerInterval);
+    playPdaSound('failure');
     corruption.hidden = false;
 };
 
@@ -172,7 +213,7 @@ const startTimer = () => {
 
 updateClock();
 setInterval(updateClock, 30000);
-timer.textContent = 'T-48:00:00';
+timer.textContent = 'T-00:35:00';
 
 // ========================================
 // ENCENDIDO DE LA PDA
@@ -181,6 +222,7 @@ timer.textContent = 'T-48:00:00';
 powerButton.onclick = () => {
     if (bootSequenceRunning || getProgress().powered) return;
     bootSequenceRunning = true;
+    playPdaSound('boot');
     powerButton.disabled = true;
     saveProgress({ ...getProgress(), powered: true });
     screen.classList.remove('power-off', 'powered-on');
@@ -207,11 +249,13 @@ form.addEventListener('submit', (event) => {
     const accessCode = normalizeAnswer(password.value);
 
     if (accessCode !== 'ARTUROOLMOS') {
+        playPdaSound('error');
         message.textContent = '⚠ ACCESO DENEGADO';
         message.className = 'error';
         password.select();
         return;
     }
+    playPdaSound('success');
     saveProgress({ ...getProgress(), unlocked: true });
     message.textContent = `✓ ACCESO CONCEDIDO · INVESTIGACIÓN PARCIAL RECUPERADA${storageAvailable ? '' : ' · PROGRESO SOLO EN ESTA SESIÓN'}`;
     message.className = storageAvailable ? '' : 'error';
@@ -240,7 +284,7 @@ const renderList = () => {
     const progress = getProgress();
     content.innerHTML = `<div class="module-status"><span>PROGRESO ${progress.stage}/10</span><span>REGISTROS RECUPERADOS</span></div><div class="item-list">${data.items.map((item, index) => {
         const available = isUnlocked(item, progress);
-        const solved = item.puzzle && progress.solved.includes(item.puzzle);
+        const solved = item.puzzle === 'interference' ? progress.interferenceRecovered : item.puzzle && progress.solved.includes(item.puzzle);
         const status = !available ? 'BLOQUEADO' : solved ? 'RECUPERADO' : item.status;
         return `<button class="record${available ? '' : ' record-disabled'}" data-index="${index}" ${available ? '' : 'disabled'}><span class="record-icon">${available ? '▧' : '▣'}</span><span class="record-body"><strong>${item.title}</strong><small>${available ? item.text : 'ACCESO RESTRINGIDO'}</small></span><span class="record-status${available ? '' : ' blocked'}">${status}</span></button>`;
     }).join('')}</div>`;
@@ -343,6 +387,32 @@ const renderFinalCodePuzzle = (item, preferredFocus = null) => {
     document.querySelector('#record-back').onclick = renderList;
 };
 
+const INTERFERENCE_TARGETS = [32, 68, 47];
+const renderInterferencePuzzle = (item) => {
+    const progress = getProgress();
+    const recovered = progress.interferenceRecovered === true;
+    const controls = INTERFERENCE_TARGETS.map((target, index) => `<label class="interference-channel">CANAL 0${index + 1}<span class="interference-range"><input type="range" min="0" max="100" value="${[14, 84, 23][index]}" data-interference-channel="${index}" aria-label="Canal ${index + 1}"><i style="--target:${target}%" aria-hidden="true"></i></span><output data-interference-value="${index}">--</output></label>`).join('');
+    content.innerHTML = `<button class="record-back" id="record-back">← LISTA DE REGISTROS</button><article class="document interference-document"><p class="document-id">MENSAJES / AUDIO DAÑADO / 00:17</p><h3>${item.title}</h3><p>${item.text}</p>${recovered ? '<section class="interference-recovered" aria-live="polite"><span>✓ SEÑAL RESTAURADA</span><p>«No protegen oro. Protegen información.»</p><small>— ARTURO OLMOS / FRAGMENTO RECUPERADO</small></section>' : `<section class="interference-console"><p class="interference-status" id="interference-status" role="status">SEÑAL INESTABLE · AJUSTA LOS TRES CANALES</p><div class="interference-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="interference-controls">${controls}</div></section>`}</article>`;
+    document.querySelector('#record-back').onclick = renderList;
+    if (recovered) return;
+
+    const values = [14, 84, 23];
+    const status = document.querySelector('#interference-status');
+    const updateSignal = () => {
+        content.querySelectorAll('[data-interference-value]').forEach((output) => { output.textContent = String(values[Number(output.dataset.interferenceValue)]).padStart(3, '0'); });
+        const synchronized = values.every((value, index) => Math.abs(value - INTERFERENCE_TARGETS[index]) <= 3);
+        if (!synchronized) return;
+        saveProgress({ ...getProgress(), interferenceRecovered: true });
+        playPdaSound('success');
+        status.textContent = 'SEÑAL RECUPERADA';
+        setTimeout(() => renderInterferencePuzzle(item), 350);
+    };
+    content.querySelectorAll('[data-interference-channel]').forEach((input) => {
+        input.oninput = () => { values[Number(input.dataset.interferenceChannel)] = Number(input.value); updateSignal(); };
+    });
+    updateSignal();
+};
+
 const openRecord = (index) => {
     const progress = getProgress();
     if (!progress.unlocked) return;
@@ -354,6 +424,11 @@ const openRecord = (index) => {
 
     if (item.puzzle === 'hand') {
         renderOrganizationPuzzle(item);
+        return;
+    }
+
+    if (item.puzzle === 'interference') {
+        renderInterferencePuzzle(item);
         return;
     }
 
@@ -554,10 +629,12 @@ const solvePuzzle = (puzzleName, answer = 'LA MANO NEGRA') => {
     const progress = getProgress();
     if (progress.solved.includes(puzzleName)) return false;
     if (!validatePuzzleAnswer(answer, puzzle)) {
+        playPdaSound('error');
         if (result) { result.textContent = 'RESPUESTA INCORRECTA.'; result.className = 'error'; }
         return false;
     }
     progress.solved.push(puzzleName);
+    playPdaSound('success');
     progress.stage = Math.min(10, progress.stage + 1);
     if (puzzleName === 'mark') alertCount.textContent = '1';
     if (puzzleName === 'truth') { progress.completed = true; removeStorage(TIMER_KEY); clearInterval(timerInterval); timer.textContent = 'PROTOCOLO CANCELADO'; }
@@ -669,6 +746,7 @@ document.addEventListener('fullscreenchange', () => {
 
 const initial = getProgress();
 renderGpsPanel(initial);
+renderInvestigationProgress(initial);
 showStorageWarning();
 alertCount.textContent = initial.alertsRead || initial.stage < 3 ? '0' : '1';
 if (initial.failed) corruption.hidden = false;
