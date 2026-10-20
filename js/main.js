@@ -388,28 +388,56 @@ const renderFinalCodePuzzle = (item, preferredFocus = null) => {
 };
 
 const INTERFERENCE_TARGETS = [32, 68, 47];
+const INTERFERENCE_INITIAL_VALUES = [14, 84, 23];
+const INTERFERENCE_SNAP_RANGE = 7;
 const renderInterferencePuzzle = (item) => {
     const progress = getProgress();
     const recovered = progress.interferenceRecovered === true;
-    const controls = INTERFERENCE_TARGETS.map((target, index) => `<label class="interference-channel">CANAL 0${index + 1}<span class="interference-range"><input type="range" min="0" max="100" value="${[14, 84, 23][index]}" data-interference-channel="${index}" aria-label="Canal ${index + 1}"><i style="--target:${target}%" aria-hidden="true"></i></span><output data-interference-value="${index}">--</output></label>`).join('');
-    content.innerHTML = `<button class="record-back" id="record-back">← LISTA DE REGISTROS</button><article class="document interference-document"><p class="document-id">MENSAJES / AUDIO DAÑADO / 00:17</p><h3>${item.title}</h3><p>${item.text}</p>${recovered ? '<section class="interference-recovered" aria-live="polite"><span>✓ SEÑAL RESTAURADA</span><p>«No protegen oro. Protegen información.»</p><small>— ARTURO OLMOS / FRAGMENTO RECUPERADO</small></section>' : `<section class="interference-console"><p class="interference-status" id="interference-status" role="status">SEÑAL INESTABLE · AJUSTA LOS TRES CANALES</p><div class="interference-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="interference-controls">${controls}</div></section>`}</article>`;
+    const controls = INTERFERENCE_TARGETS.map((target, index) => `<label class="interference-channel" data-interference-row="${index}"><span>CANAL 0${index + 1}</span><span class="interference-range"><input type="range" min="0" max="100" value="${INTERFERENCE_INITIAL_VALUES[index]}" data-interference-channel="${index}" aria-label="Canal ${index + 1}"><i style="--target:${target}%" aria-hidden="true"></i></span><output data-interference-value="${index}">---</output></label>`).join('');
+    content.innerHTML = `<button class="record-back" id="record-back">← LISTA DE REGISTROS</button><article class="document interference-document"><p class="document-id">MENSAJES / AUDIO DAÑADO / 00:17</p><h3>${item.title}</h3><p>${item.text}</p>${recovered ? '<section class="interference-recovered" aria-live="polite"><span>✓ SEÑAL RESTAURADA</span><p>«No protegen oro. Protegen información.»</p><small>— ARTURO OLMOS / FRAGMENTO RECUPERADO</small></section>' : `<section class="interference-console"><p class="interference-status" id="interference-status" role="status">SEÑAL INESTABLE · CANALES SINCRONIZADOS 0/3</p><div class="interference-wave" id="interference-wave" data-sync="0" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="interference-controls">${controls}</div><button class="interference-reset" id="reset-interference" type="button">RESTABLECER CANALES</button></section>`}</article>`;
     document.querySelector('#record-back').onclick = renderList;
     if (recovered) return;
 
-    const values = [14, 84, 23];
+    const values = [...INTERFERENCE_INITIAL_VALUES];
     const status = document.querySelector('#interference-status');
+    const wave = document.querySelector('#interference-wave');
     const updateSignal = () => {
-        content.querySelectorAll('[data-interference-value]').forEach((output) => { output.textContent = String(values[Number(output.dataset.interferenceValue)]).padStart(3, '0'); });
-        const synchronized = values.every((value, index) => Math.abs(value - INTERFERENCE_TARGETS[index]) <= 3);
+        const synchronizedChannels = values.map((value, index) => Math.abs(value - INTERFERENCE_TARGETS[index]) <= INTERFERENCE_SNAP_RANGE);
+        const synchronizedCount = synchronizedChannels.filter(Boolean).length;
+        content.querySelectorAll('[data-interference-value]').forEach((output) => {
+            const index = Number(output.dataset.interferenceValue);
+            output.textContent = synchronizedChannels[index] ? 'SYNC' : String(values[index]).padStart(3, '0');
+        });
+        content.querySelectorAll('[data-interference-row]').forEach((row) => {
+            const index = Number(row.dataset.interferenceRow);
+            row.classList.toggle('interference-locked', synchronizedChannels[index]);
+            const input = row.querySelector('input');
+            input.disabled = synchronizedChannels[index];
+            input.setAttribute('aria-valuetext', synchronizedChannels[index] ? `Canal ${index + 1} sincronizado` : `Canal ${index + 1}, nivel ${values[index]}`);
+        });
+        wave.dataset.sync = String(synchronizedCount);
+        const synchronized = synchronizedCount === INTERFERENCE_TARGETS.length;
+        status.textContent = synchronized ? 'SEÑAL RECUPERADA' : `SEÑAL INESTABLE · CANALES SINCRONIZADOS ${synchronizedCount}/3`;
         if (!synchronized) return;
+        if (getProgress().interferenceRecovered) return;
         saveProgress({ ...getProgress(), interferenceRecovered: true });
         playPdaSound('success');
-        status.textContent = 'SEÑAL RECUPERADA';
         setTimeout(() => renderInterferencePuzzle(item), 350);
     };
     content.querySelectorAll('[data-interference-channel]').forEach((input) => {
-        input.oninput = () => { values[Number(input.dataset.interferenceChannel)] = Number(input.value); updateSignal(); };
+        input.oninput = () => {
+            const index = Number(input.dataset.interferenceChannel);
+            const nextValue = Number(input.value);
+            values[index] = Math.abs(nextValue - INTERFERENCE_TARGETS[index]) <= INTERFERENCE_SNAP_RANGE ? INTERFERENCE_TARGETS[index] : nextValue;
+            input.value = String(values[index]);
+            updateSignal();
+        };
     });
+    document.querySelector('#reset-interference').onclick = () => {
+        values.splice(0, values.length, ...INTERFERENCE_INITIAL_VALUES);
+        content.querySelectorAll('[data-interference-channel]').forEach((input, index) => { input.disabled = false; input.value = String(values[index]); });
+        updateSignal();
+    };
     updateSignal();
 };
 

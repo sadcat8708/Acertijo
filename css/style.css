@@ -1257,7 +1257,7 @@ h2 {
     background:linear-gradient(145deg,#0a130b,#111d12);
     border:1px solid #9ecb723d;
     margin-top:15px;
-    padding:12px;
+    padding:13px;
 }
 
 .interference-status {
@@ -1273,7 +1273,7 @@ h2 {
     border:1px solid #9ecb7226;
     display:flex;
     gap:4px;
-    height:44px;
+    height:52px;
     justify-content:center;
     margin-bottom:13px;
     overflow:hidden;
@@ -1285,40 +1285,70 @@ h2 {
     box-shadow:0 0 5px #c6ee8c80;
     display:block;
     height:18%;
+    transition:height .25s ease, opacity .25s ease;
     width:2px;
+}
+
+.interference-wave[data-sync="1"] i:nth-child(-n+3),
+.interference-wave[data-sync="2"] i:nth-child(-n+6),
+.interference-wave[data-sync="3"] i {
+    background:#d9f5b2;
+    box-shadow:0 0 7px #c6ee8c;
 }
 
 .interference-wave i:nth-child(2n) { height:65%; animation-delay:.17s; }
 .interference-wave i:nth-child(3n) { height:38%; animation-delay:.31s; }
 .interference-wave i:nth-child(4n) { height:82%; animation-delay:.08s; }
 
-.interference-controls { display:grid; gap:11px; }
+.interference-controls { display:grid; gap:8px; }
 
 .interference-channel {
+    background:#0b150d;
+    border:1px solid #9ecb722c;
     align-items:center;
     color:#91a88a;
     display:grid;
     font-size:8px;
-    gap:8px;
-    grid-template-columns:56px 1fr 24px;
+    gap:9px;
+    grid-template-columns:60px 1fr 33px;
     letter-spacing:.06em;
+    min-height:42px;
+    padding:0 8px;
+    transition:border-color .2s ease, background .2s ease;
 }
+
+.interference-channel > span:first-child { color:#a8bea0; }
+.interference-channel.interference-locked { background:#152518; border-color:#c6ee8c9c; }
+.interference-channel.interference-locked > span:first-child { color:#d9f5b2; }
 
 .interference-range { display:block; position:relative; }
 
 .interference-range input {
+    -webkit-appearance:none;
+    appearance:none;
     accent-color:#c6ee8c;
+    background:transparent;
     cursor:pointer;
+    height:28px;
     margin:0;
     position:relative;
+    touch-action:manipulation;
     width:100%;
     z-index:1;
 }
 
+.interference-range input:focus-visible { outline:1px solid #d9f5b2; outline-offset:3px; }
+.interference-range input:disabled { cursor:default; opacity:.78; }
+
+.interference-range input::-webkit-slider-runnable-track { background:#50654b; border-radius:999px; height:4px; }
+.interference-range input::-webkit-slider-thumb { -webkit-appearance:none; appearance:none; background:#d9f5b2; border:2px solid #20331e; border-radius:50%; box-shadow:0 0 5px #c6ee8c; height:17px; margin-top:-6px; width:17px; }
+.interference-range input::-moz-range-track { background:#50654b; border-radius:999px; height:4px; }
+.interference-range input::-moz-range-thumb { background:#d9f5b2; border:2px solid #20331e; border-radius:50%; box-shadow:0 0 5px #c6ee8c; height:14px; width:14px; }
+
 .interference-range i {
     background:#ffb05c;
     box-shadow:0 0 5px #ffb05c;
-    height:13px;
+    height:18px;
     left:var(--target);
     pointer-events:none;
     position:absolute;
@@ -1333,6 +1363,24 @@ h2 {
     text-align:right;
 }
 
+.interference-locked output { color:#d9f5b2; }
+
+.interference-reset {
+    background:transparent;
+    border:1px solid #9ecb723d;
+    color:#9db492;
+    cursor:pointer;
+    font:7px "DM Mono";
+    letter-spacing:.08em;
+    margin-top:11px;
+    min-height:34px;
+    padding:0 10px;
+    width:100%;
+}
+
+.interference-reset:hover,
+.interference-reset:focus-visible { border-color:#c6ee8c; color:#d9f5b2; outline:none; }
+
 .interference-recovered {
     animation:organization-reveal .45s ease-out both;
     border-bottom:1px solid #c6ee8c70;
@@ -1346,6 +1394,12 @@ h2 {
 .interference-recovered > span { font-size:9px; letter-spacing:.12em; }
 .interference-recovered p { font:14px "DM Mono"; line-height:1.5; margin:13px 0; }
 .interference-recovered small { color:#91a88a; font-size:7px; letter-spacing:.08em; }
+
+@media (max-width:390px) {
+    .interference-console { padding:10px; }
+    .interference-channel { gap:6px; grid-template-columns:51px 1fr 30px; padding:0 6px; }
+    .interference-channel > span:first-child { font-size:7px; }
+}
 
 @keyframes interference-wave {
     from { opacity:.38; transform:scaleY(.5); }
