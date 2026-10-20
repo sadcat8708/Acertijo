@@ -63,7 +63,7 @@ const playPdaSound = (kind) => {
 };
 
 const defaultFinalPuzzle = () => ({ phase: 'minefield', minefield: createMinefieldState() });
-const defaultProgress = () => ({ powered: false, unlocked: false, stage: 1, solved: [], alertsRead: false, completed: false, failed: false, interferenceRecovered: false, finalPuzzle: defaultFinalPuzzle(), organizationPuzzle: createOrganizationPuzzleState() });
+const defaultProgress = () => ({ powered: false, unlocked: false, stage: 1, solved: [], seenRecords: [], alertsRead: false, completed: false, failed: false, interferenceRecovered: false, finalPuzzle: defaultFinalPuzzle(), organizationPuzzle: createOrganizationPuzzleState() });
 const readStorage = (key) => {
     try { return localStorage.getItem(key); }
     catch { storageAvailable = false; showStorageWarning(); return null; }
@@ -91,6 +91,7 @@ const normalizeProgress = (value) => {
         unlocked: value.unlocked === true,
         stage: Number.isInteger(value.stage) ? Math.min(10, Math.max(1, value.stage)) : 1,
         solved,
+        seenRecords: Array.isArray(value.seenRecords) ? [...new Set(value.seenRecords.filter((key) => typeof key === 'string' && /^(ARCHIVOS|MAPAS|NOTAS|FOTOS|MENSAJES|SEGURIDAD):\d+$/.test(key)))] : [],
         alertsRead: value.alertsRead === true,
         completed: value.completed === true,
         failed: value.failed === true,
@@ -285,8 +286,10 @@ const renderList = () => {
     content.innerHTML = `<div class="module-status"><span>PROGRESO ${progress.stage}/10</span><span>REGISTROS RECUPERADOS</span></div><div class="item-list">${data.items.map((item, index) => {
         const available = isUnlocked(item, progress);
         const solved = item.puzzle === 'interference' ? progress.interferenceRecovered : item.puzzle && progress.solved.includes(item.puzzle);
-        const status = !available ? 'BLOQUEADO' : solved ? 'RECUPERADO' : item.status;
-        return `<button class="record${available ? '' : ' record-disabled'}" data-index="${index}" ${available ? '' : 'disabled'}><span class="record-icon">${available ? '▧' : '▣'}</span><span class="record-body"><strong>${item.title}</strong><small>${available ? item.text : 'ACCESO RESTRINGIDO'}</small></span><span class="record-status${available ? '' : ' blocked'}">${status}</span></button>`;
+        const isNew = available && !solved && !item.reset && (item.puzzle || ['BLOQUEADO', 'NUEVO'].includes(item.status)) && !progress.seenRecords.includes(`${activeApp}:${index}`);
+        const status = !available ? 'BLOQUEADO' : solved ? 'RECUPERADO' : isNew ? 'NUEVO' : ['BLOQUEADO', 'NUEVO'].includes(item.status) ? (item.puzzle ? 'EN CURSO' : 'DISPONIBLE') : item.status;
+        const icon = !available ? '▣' : isNew ? '?' : '▧';
+        return `<button class="record${available ? '' : ' record-disabled'}" data-index="${index}" ${available ? '' : 'disabled'}><span class="record-icon${isNew ? ' record-icon-new' : ''}"${isNew ? ' title="Nuevo acertijo o pista"' : ''}>${icon}</span><span class="record-body"><strong>${item.title}</strong><small>${available ? item.text : 'ACCESO RESTRINGIDO'}</small></span><span class="record-status${available ? '' : ' blocked'}">${status}</span></button>`;
     }).join('')}</div>`;
     content.querySelectorAll('.record:not(:disabled)').forEach((record) => record.onclick = () => openRecord(Number(record.dataset.index)));
 };
@@ -367,7 +370,7 @@ const renderFinalCodePuzzle = (item, preferredFocus = null) => {
     }
 
     if (finalState.phase === 'code') {
-        content.innerHTML = `<button class="record-back" id="record-back">← LISTA DE REGISTROS</button><article class="document forensic-document"><p class="document-id">ARTURO_OLMOS_FINAL / ACCESO RESTRINGIDO</p><h3>CLAVE DEL ARCHIVO</h3><p>Recuerda las palabras del acertijo:</p><p>«No soy una joya cualquiera, aunque puedo brillar en un anillo. Mi color recuerda a la selva y mi historia está ligada a una riqueza que muchos persiguieron. ¿Qué soy?»</p><p>Introduce la respuesta para desbloquear el registro de Arturo.</p><form id="final-code-form" class="forensic-form"><label for="final-code-answer">PALABRA CLAVE</label><input id="final-code-answer" autocomplete="off" required><button>DESBLOQUEAR ARCHIVO</button></form><p id="final-code-message" class="forensic-message" role="status" aria-live="polite"></p></article>`;
+        content.innerHTML = `<button class="record-back" id="record-back">← LISTA DE REGISTROS</button><article class="document forensic-document"><p class="document-id">ARTURO_OLMOS_FINAL / ACCESO RESTRINGIDO</p><h3>CLAVE DEL ARCHIVO</h3><p>Introduce la respuesta del acertijo anterior para desbloquear el registro de Arturo.</p><form id="final-code-form" class="forensic-form"><label for="final-code-answer">PALABRA CLAVE</label><input id="final-code-answer" autocomplete="off" required><button>DESBLOQUEAR ARCHIVO</button></form><p id="final-code-message" class="forensic-message" role="status" aria-live="polite"></p></article>`;
         document.querySelector('#record-back').onclick = renderList;
         document.querySelector('#final-code-answer').focus();
         document.querySelector('#final-code-form').onsubmit = (event) => {
@@ -447,8 +450,12 @@ const openRecord = (index) => {
     activeItem = index;
     const item = pdaContent[activeApp].items[index];
     if (!item || !isUnlocked(item, progress)) { activeItem = null; return; }
+    const recordKey = `${activeApp}:${index}`;
+    if (!progress.seenRecords.includes(recordKey)) {
+        saveProgress({ ...progress, seenRecords: [...progress.seenRecords, recordKey] });
+    }
     const puzzle = item.puzzle ? puzzles[item.puzzle] : null;
-    const solved = puzzle && getProgress().solved.includes(item.puzzle);
+    const solved = puzzle && progress.solved.includes(item.puzzle);
 
     if (item.puzzle === 'hand') {
         renderOrganizationPuzzle(item);

@@ -243,6 +243,9 @@ test('solo ESMERALDA valida la adivinanza y el código final', () => {
     assert.equal(api.validateEmeraldKey('esmeralda verde'), false);
     assert.equal(api.validatePuzzleAnswer('ESMERALDA', api.puzzles.finalCode), true);
     assert.equal(api.validatePuzzleAnswer('LAS LAJAS TEATRO COLON CIUDAD PERDIDA', api.puzzles.finalCode), false);
+    const emeraldRiddle = 'No soy una joya cualquiera, aunque puedo brillar en un anillo. Mi color recuerda a la selva y mi historia está ligada a una riqueza que muchos persiguieron. ¿Qué soy?';
+    assert.equal(mainSource.split(emeraldRiddle).length - 1, 1);
+    assert.match(mainSource, /Introduce la respuesta del acertijo anterior para desbloquear el registro de Arturo/);
 });
 
 test('el estado de tablero inválido se restaura de forma segura', () => {
@@ -285,6 +288,19 @@ test('la pantalla de bloqueo reserva espacio para sus textos y la ficha no se su
     assert.match(styleSource, /#lock\.view\[hidden\]\s*\{\s*display\s*:\s*none/);
     assert.match(styleSource, /@media\s*\(max-width:\s*360px\)/);
     assert.match(styleSource, /@media\s*\(max-width:\s*480px\)/);
+});
+
+test('los acertijos y pistas nuevos muestran ? hasta que el jugador los abre', () => {
+    const listRenderer = mainSource.slice(mainSource.indexOf('const renderList'), mainSource.indexOf('let flagMode'));
+    const recordOpener = mainSource.slice(mainSource.indexOf('const openRecord'), mainSource.indexOf('const showImageViewer'));
+    assert.match(mainSource, /seenRecords: \[\]/);
+    assert.match(mainSource, /seenRecords: Array\.isArray\(value\.seenRecords\)/);
+    assert.match(listRenderer, /const isNew = available && !solved/);
+    assert.match(listRenderer, /progress\.seenRecords\.includes\(`\$\{activeApp\}:\$\{index\}`\)/);
+    assert.match(listRenderer, /record-icon-new/);
+    assert.match(listRenderer, /\?'/);
+    assert.match(recordOpener, /saveProgress\(\{ \.\.\.progress, seenRecords:/);
+    assert.match(styleSource, /\.record-icon-new/);
 });
 
 test('el GPS deriva Las Lajas, Teatro Colón y Ciudad Perdida de sus acertijos existentes', () => {
